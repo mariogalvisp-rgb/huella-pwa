@@ -12,9 +12,9 @@
   <link rel="apple-touch-icon" href="icon-192.png">
   <title>Huella de Origen</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    body { font-family: 'DM Sans', sans-serif; background: #FAF8F5; color: #1A0A04; max-width: 430px; margin: 0 auto; min-height: 100vh; position: relative; overflow-x: hidden; }
+    body { font-family: 'Montserrat', sans-serif; background: #FAF8F5; color: #1A0A04; max-width: 430px; margin: 0 auto; min-height: 100vh; position: relative; overflow-x: hidden; }
     .screen { display: none; min-height: 100vh; padding-bottom: 70px; }
     .screen.active { display: block; }
 
@@ -46,8 +46,8 @@
     .sp-sub { font-size: 11px; color: #C4A882; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
     .sp-tag { font-size: 13px; color: #A08060; font-style: italic; margin-bottom: 8px; }
     .sp-desc { font-size: 12px; color: #7A6050; line-height: 1.6; margin-bottom: 24px; }
-    .sp-btn { display: block; width: 100%; padding: 14px; background: #8B5E3C; color: #F5EDD6; border-radius: 14px; font-size: 15px; font-weight: 500; border: none; font-family: 'DM Sans', sans-serif; margin-bottom: 10px; cursor: pointer; }
-    .sp-btn2 { display: block; width: 100%; padding: 14px; background: transparent; color: #C4A882; border-radius: 14px; font-size: 15px; font-weight: 500; border: 0.5px solid rgba(196,168,130,0.4); font-family: 'DM Sans', sans-serif; cursor: pointer; }
+    .sp-btn { display: block; width: 100%; padding: 14px; background: #8B5E3C; color: #F5EDD6; border-radius: 14px; font-size: 15px; font-weight: 500; border: none; font-family: 'Montserrat', sans-serif; margin-bottom: 10px; cursor: pointer; }
+    .sp-btn2 { display: block; width: 100%; padding: 14px; background: transparent; color: #C4A882; border-radius: 14px; font-size: 15px; font-weight: 500; border: 0.5px solid rgba(196,168,130,0.4); font-family: 'Montserrat', sans-serif; cursor: pointer; }
     .social-row { display: flex; justify-content: center; gap: 10px; margin: 16px; }
     .social-btn { font-size: 11px; color: #8B5E3C; padding: 6px 12px; border: 0.5px solid #D4C4B0; border-radius: 99px; text-decoration: none; background: white; }
 
@@ -251,7 +251,7 @@
     /* APIKEY */
     .apikey-box { background: #FAF0E8; border: 0.5px solid #D4A882; border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; }
     .apikey-lbl { font-size: 11px; color: #5A4030; margin-bottom: 6px; font-weight: 500; }
-    .apikey-input { width: 100%; padding: 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; border: 0.5px solid #C4A882; border-radius: 8px; background: white; color: #1A0A04; outline: none; }
+    .apikey-input { width: 100%; padding: 10px; font-family: 'Montserrat', sans-serif; font-size: 13px; border: 0.5px solid #C4A882; border-radius: 8px; background: white; color: #1A0A04; outline: none; }
     .apikey-hint { font-size: 10px; color: #8A7060; margin-top: 5px; }
   </style>
 </head>
@@ -262,10 +262,10 @@
 <!-- SPLASH -->
 <div class="screen active" id="sc-splash">
   <div class="splash-box">
-    <div class="sp-logo">☕</div>
+    <img src="logohuelladeorigen.png" alt="Huella de Origen" style="height: 80px; margin-bottom: 16px; object-fit: contain;">
     <div class="sp-brand">Huella de Origen</div>
     <div class="sp-sub">Café de Especialidad</div>
-    <div class="sp-tag">"Cada sorbo es una experiencia inolvidable"</div>
+    <div class="sp-tag">"Del campo a tu taza"</div>
     <div class="sp-desc">Cafés únicos y artesanales, cultivados y tostados exclusivamente en Colombia — el mayor productor mundial de café Arábica recolectado a mano.</div>
     <button class="sp-btn" onclick="goTo('home')">Explorar cafés</button>
     <button class="sp-btn2" onclick="goTo('perfil')">Mi perfil</button>
@@ -275,13 +275,13 @@
     <a class="social-btn" href="https://www.tiktok.com/@huelladeorigen_" target="_blank">🎵 TikTok</a>
   </div>
   <div style="text-align:center;font-size:10px;color:#8A7060;margin:8px 0 20px;padding:0 16px">
-    huelladeorigen.com · Envío gratis Bogotá +$90.000
+    huelladeorigen.com · Envío gratis Bogotá +$100.000
   </div>
 </div>
 
 <!-- HOME -->
 <div class="screen" id="sc-home">
-  <div class="banner">🚚 Envío GRATIS Bogotá +$90.000 · Ciudades +$160.000</div>
+  <div class="banner">🚚 Envío GRATIS Bogotá +$100.000 · Ciudades +$180.000</div>
   <div class="topbar">
     <div class="topbar-logo">Huella <span>de Origen</span></div>
     <div class="topbar-icons">
@@ -501,7 +501,7 @@
 
 <!-- CHIVITO -->
 <div class="screen" id="sc-chivito">
-  <div class="banner">🚚 Envío GRATIS Bogotá +$90.000</div>
+  <div class="banner">🚚 Envío GRATIS Bogotá +$100.000</div>
   <div class="content">
     <div class="back-row">
       <span class="back" onclick="goTo('home')">←</span>
@@ -573,7 +573,7 @@
 
 <!-- QUETZAL -->
 <div class="screen" id="sc-quetzal">
-  <div class="banner">🚚 Envío GRATIS Bogotá +$90.000</div>
+  <div class="banner">🚚 Envío GRATIS Bogotá +$100.000</div>
   <div class="content">
     <div class="back-row">
       <span class="back" onclick="goTo('tienda')">←</span>
@@ -614,7 +614,7 @@
 
 <!-- TIENDA -->
 <div class="screen" id="sc-tienda">
-  <div class="banner">🚚 Envío GRATIS Bogotá +$90.000 · Ciudades +$160.000</div>
+  <div class="banner">🚚 Envío GRATIS Bogotá +$100.000 · Ciudades +$180.000</div>
   <div class="content">
     <div class="back-row">
       <span class="back" onclick="goTo('home')">←</span>
@@ -625,11 +625,10 @@
       <div class="prod" onclick="goTo('chivito')"><img class="prod-img" src="opt_chivito.png" alt="Chivito"><div class="prod-info"><div class="prod-name">Chivito de Páramo 454g</div><div class="prod-origin">Cajamarca · SCA 86 · ★4.83</div><div class="prod-foot"><div class="prod-price">$45.900</div><button class="add-btn" onclick="event.stopPropagation();comprar('chivito')">+ Agregar</button></div></div></div>
       <div class="prod" onclick="goTo('quetzal')"><img class="prod-img" src="opt_quetzal.png" alt="Quetzal"><div class="prod-info"><div class="prod-name">Quetzal H. Origen 454g</div><div class="prod-origin">Especialidad · ★5.00</div><div class="prod-foot"><div class="prod-price">$45.900</div><button class="add-btn" onclick="event.stopPropagation();comprar('quetzal')">+ Agregar</button></div></div></div>
       <div class="prod"><img class="prod-img" src="opt_colibri.png" alt="Colibrí"><div class="prod-info"><div class="prod-name">Colibrí Amazilia 454g</div><div class="prod-origin">Café Honey · ★4.90</div><div class="prod-foot"><div class="prod-price">$50.900</div><button class="add-btn" onclick="comprar('colibri')">+ Agregar</button></div></div></div>
-      <div class="prod"><div class="prod-img">🐦‍⬛</div><div class="prod-info"><div class="prod-name">Dúo Chivito & Quetzal</div><div class="prod-origin">2x454g · ★5.00</div><div class="prod-foot"><div class="prod-price">$91.000</div><button class="add-btn" onclick="comprar('duo')">+ Agregar</button></div></div></div>
+      <div class="prod"><img class="prod-img" src="duo quetzal y chivito .png" alt="Dúo Chivito & Quetzal"><div class="prod-info"><div class="prod-name">Dúo Chivito & Quetzal</div><div class="prod-origin">2x454g · ★5.00</div><div class="prod-foot"><div class="prod-price">$91.000</div><button class="add-btn" onclick="comprar('duo')">+ Agregar</button></div></div></div>
       <div class="prod"><img class="prod-img" src="opt_trilogia.png" alt="Trilogía"><div class="prod-info"><div class="prod-name">Trilogía Huella 454g</div><div class="prod-origin">Experiencia · ★5.00</div><div class="prod-foot"><div class="prod-price">$135.000</div><button class="add-btn" onclick="comprar('trilogia')">+ Agregar</button></div></div></div>
-      <div class="prod"><div class="prod-img">🧪</div><div class="prod-info"><div class="prod-name">Kit Quetzal + Prensa</div><div class="prod-origin">600ml · Kit gourmet</div><div class="prod-foot"><div class="prod-price">$210.000</div><button class="add-btn" onclick="comprar('kit')">+ Agregar</button></div></div></div>
-      <div class="prod"><div class="prod-img">🫖</div><div class="prod-info"><div class="prod-name">Prensa Francesa 650ml</div><div class="prod-origin">Borosilicato · Accesorio</div><div class="prod-foot"><div class="prod-price">$65.000</div><button class="add-btn" onclick="comprar('prensa')">+ Agregar</button></div></div></div>
-      <div class="prod"><div class="prod-img">🍶</div><div class="prod-info"><div class="prod-name">Jarra Cuello Ganzo</div><div class="prod-origin">350ml · ★5.00</div><div class="prod-foot"><div class="prod-price">$40.000</div><button class="add-btn" onclick="comprar('jarra')">+ Agregar</button></div></div></div>
+      <div class="prod"><img class="prod-img" src="opt_prensa-francesa.png" alt="Prensa Francesa"><div class="prod-info"><div class="prod-name">Prensa Francesa</div><div class="prod-origin">Borosilicato · Accesorio</div><div class="prod-foot"><div class="prod-price">$85.000</div><button class="add-btn" onclick="comprar('prensa')">+ Agregar</button></div></div></div>
+      <div class="prod"><img class="prod-img" src="opt_jarra-ganzo.png" alt="Jarra Cuello Ganzo"><div class="prod-info"><div class="prod-name">Jarra Cuello Ganzo</div><div class="prod-origin">350ml · ★5.00</div><div class="prod-foot"><div class="prod-price">$48.000</div><button class="add-btn" onclick="comprar('jarra')">+ Agregar</button></div></div></div>
     </div>
     <div style="text-align:center;padding:10px 0 4px">
       <a href="https://huelladeorigen.com/tienda/" target="_blank" style="font-size:12px;color:#8B5E3C;text-decoration:none">Ver tienda completa →</a>
@@ -776,8 +775,8 @@
           <div class="info-item"><span class="info-lbl">Instagram:</span><a href="https://www.instagram.com/huelladeorigen_" target="_blank" style="color:#8B5E3C;font-size:12px">@huelladeorigen_</a></div>
           <div class="info-item"><span class="info-lbl">TikTok:</span><a href="https://www.tiktok.com/@huelladeorigen_" target="_blank" style="color:#8B5E3C;font-size:12px">@huelladeorigen_</a></div>
           <div class="info-item"><span class="info-lbl">Facebook:</span><a href="https://www.facebook.com/profile.php?id=61579782050319" target="_blank" style="color:#8B5E3C;font-size:12px">Huella de Origen</a></div>
-          <div class="info-item"><span class="info-lbl">Envío Bogotá:</span><span style="font-size:12px">Gratis +$90.000</span></div>
-          <div class="info-item"><span class="info-lbl">Envío ciudades:</span><span style="font-size:12px">Gratis +$160.000</span></div>
+          <div class="info-item"><span class="info-lbl">Envío Bogotá:</span><span style="font-size:12px">Gratis +$100.000</span></div>
+          <div class="info-item"><span class="info-lbl">Envío ciudades:</span><span style="font-size:12px">Gratis +$180.000</span></div>
         </div>
       </div>
     </div>
