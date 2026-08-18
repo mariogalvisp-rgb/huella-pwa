@@ -1,0 +1,87 @@
+✅ PWA HUELLA DE ORIGEN - LISTA PARA PUBLICAR
+
+📦 ARCHIVOS EN LA CARPETA (1.1 MB total):
+
+CÓDIGO PWA:
+- index.html (74 KB) - APP COMPLETA CON IMÁGENES REALES
+- manifest.json (596 B) - Configuración PWA
+- sw.js (316 B) - Service Worker (caché offline)
+
+IMÁGENES REALES OPTIMIZADAS:
+- opt_chivito.png (187 KB) - Bolsa Chivito de Páramo
+- opt_quetzal.png (192 KB) - Bolsa Quetzal del Tolima
+- opt_colibri.png (179 KB) - Bolsa Colibrí Amazilia
+- opt_trilogia.png (183 KB) - Trilogía (3 bolsas)
+- opt_prensa-francesa.png (135 KB) - Prensa Francesa (accesorio)
+- opt_jarra-ganzo.png (88 KB) - Jarra Cuello de Ganzo (accesorio)
+
+✨ CAMBIOS REALIZADOS:
+
+✅ IMÁGENES DE PRODUCTOS (Ahora reales, no URLs de internet)
+  • Chivito: Foto de bolsa real
+  • Quetzal: Foto de bolsa real
+  • Colibrí Amazilia: Foto de bolsa real
+  • Trilogía: Foto con las 3 bolsas
+
+✅ MÉTODOS DE PREPARACIÓN EN CALCULADORA (Emojis mejorados)
+  • V60 → 🔻
+  • Chemex → ⏳
+  • AeroPress → 💉
+  • Prensa Francesa → 🫖
+  • Espresso → ☕
+  • Moka → ⚗️
+  • Cold Brew → 🧊
+  • Turco → 🫙
+
+🚀 CÓMO PUBLICAR EN 3 PASOS:
+
+1️⃣ GITHUB (5 minutos)
+   - Crear repo en github.com/new
+   - Subir estos 9 archivos
+   - URL: https://github.com/tu-usuario/huella-pwa
+
+2️⃣ VERCEL (3 minutos)
+   - Ir a vercel.com/new
+   - Conectar GitHub repo
+   - Click "Deploy"
+   - Esperar 30 segundos
+   - ✅ URL pública: https://huella-pwa-xxx.vercel.app
+
+3️⃣ SUPABASE (10 minutos)
+   - Crear proyecto en supabase.com
+   - Ejecutar SQL para crear tablas
+   - Obtener API Key
+   - Integrar en la app
+
+📱 FUNCIONA EN:
+✅ Android (Chrome)
+✅ iPhone/iPad (Safari)
+✅ Desktop
+✅ Offline (sin internet)
+✅ Instalable como app nativa
+
+💾 TAMAÑO TOTAL: 1.1 MB
+- App sin imágenes: 75 KB
+- Imágenes optimizadas: ~1 MB
+
+🎯 PRÓXIMOS PASOS:
+
+Después de publicar en Vercel:
+
+1. Crear cuenta Supabase
+2. Crear base de datos con tablas:
+   - users (autenticación Google)
+   - favoritos (productos marcados)
+   - carrito (compras)
+   - ordenes (historial)
+   - analisis_ia (análisis guardados)
+
+3. Integrar pagos con Stripe (próximo mes)
+
+🎉 ¡LISTO PARA COMPARTIR CON EL MUNDO!
+
+Una vez publicado, compartir URL:
+"Descarga la app Huella de Origen: https://huella-pwa-xxx.vercel.app"
+"Instala en tu celular (Android/iPhone)"
+"Funciona offline"
+"Análisis de café con IA"
