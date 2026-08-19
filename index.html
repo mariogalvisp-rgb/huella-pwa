@@ -260,7 +260,7 @@
 <div class="status"></div>
 
 <!-- SPLASH -->
-<div class="screen active" id="sc-splash">
+<div class="screen" id="sc-splash">
   <div class="splash-box">
     <img src="logohuelladeorigen.png" alt="Huella de Origen" style="height: 100px; margin-bottom: 20px; object-fit: contain;">
     <div class="sp-sub">Café de Especialidad</div>
@@ -834,14 +834,17 @@
     <div class="prod-grid">
       <div class="prod" onclick="goTo('chivito')"><img class="prod-img" src="opt_chivito.png" alt="Chivito"><div class="prod-info"><div class="prod-name">Chivito de Páramo 454g</div><div class="prod-origin">Cajamarca · SCA 86 · ★4.83</div><div class="prod-foot"><div class="prod-price">$45.900</div><button class="add-btn" onclick="event.stopPropagation();comprar('chivito')">+ Agregar</button></div></div></div>
       <div class="prod" onclick="goTo('quetzal')"><img class="prod-img" src="opt_quetzal.png" alt="Quetzal"><div class="prod-info"><div class="prod-name">Quetzal H. Origen 454g</div><div class="prod-origin">Especialidad · ★5.00</div><div class="prod-foot"><div class="prod-price">$45.900</div><button class="add-btn" onclick="event.stopPropagation();comprar('quetzal')">+ Agregar</button></div></div></div>
-      <div class="prod"><img class="prod-img" src="opt_colibri.png" alt="Colibrí"><div class="prod-info"><div class="prod-name">Colibrí Amazilia 454g</div><div class="prod-origin">Café Honey · ★4.90</div><div class="prod-foot"><div class="prod-price">$50.900</div><button class="add-btn" onclick="comprar('colibri')">+ Agregar</button></div></div></div>
-      <div class="prod"><img class="prod-img" src="duo quetzal y chivito .png" alt="Dúo Chivito & Quetzal"><div class="prod-info"><div class="prod-name">Dúo Chivito & Quetzal</div><div class="prod-origin">2x454g · ★5.00</div><div class="prod-foot"><div class="prod-price">$91.000</div><button class="add-btn" onclick="comprar('duo')">+ Agregar</button></div></div></div>
-      <div class="prod"><img class="prod-img" src="opt_trilogia.png" alt="Trilogía"><div class="prod-info"><div class="prod-name">Trilogía Huella 454g</div><div class="prod-origin">Experiencia · ★5.00</div><div class="prod-foot"><div class="prod-price">$135.000</div><button class="add-btn" onclick="comprar('trilogia')">+ Agregar</button></div></div></div>
+      <div class="prod" onclick="goTo('colibri')"><img class="prod-img" src="opt_colibri.png" alt="Colibrí"><div class="prod-info"><div class="prod-name">Colibrí Amazilia 454g</div><div class="prod-origin">Café Honey · ★4.90</div><div class="prod-foot"><div class="prod-price">$50.900</div><button class="add-btn" onclick="event.stopPropagation();comprar('colibri')">+ Agregar</button></div></div></div>
+      <div class="prod" onclick="goTo('duo')"><img class="prod-img" src="duo quetzal y chivito .png" alt="Dúo Chivito & Quetzal"><div class="prod-info"><div class="prod-name">Dúo Chivito & Quetzal</div><div class="prod-origin">2x454g · ★5.00</div><div class="prod-foot"><div class="prod-price">$91.000</div><button class="add-btn" onclick="event.stopPropagation();comprar('duo')">+ Agregar</button></div></div></div>
+      <div class="prod" onclick="goTo('trilogia')"><img class="prod-img" src="opt_trilogia.png" alt="Trilogía"><div class="prod-info"><div class="prod-name">Trilogía Huella 454g</div><div class="prod-origin">Experiencia · ★5.00</div><div class="prod-foot"><div class="prod-price">$135.000</div><button class="add-btn" onclick="event.stopPropagation();comprar('trilogia')">+ Agregar</button></div></div></div>
       <div class="prod"><img class="prod-img" src="opt_prensa-francesa.png" alt="Prensa Francesa"><div class="prod-info"><div class="prod-name">Prensa Francesa</div><div class="prod-origin">Borosilicato · Accesorio</div><div class="prod-foot"><div class="prod-price">$110.000</div><button class="add-btn" onclick="comprar('prensa')">+ Agregar</button></div></div></div>
       <div class="prod"><img class="prod-img" src="opt_jarra-ganzo.png" alt="Jarra Cuello Ganzo"><div class="prod-info"><div class="prod-name">Jarra Cuello Ganzo</div><div class="prod-origin">350ml · ★5.00</div><div class="prod-foot"><div class="prod-price">$40.000</div><button class="add-btn" onclick="comprar('jarra')">+ Agregar</button></div></div></div>
     </div>
     <div style="text-align:center;padding:10px 0 4px">
       <a href="https://huelladeorigen.com/tienda/" target="_blank" style="font-size:12px;color:#8B5E3C;text-decoration:none">Ver tienda completa →</a>
+    </div>
+    <div style="padding:16px;text-align:center">
+      <a href="https://wa.me/573117682407?text=Hola%20Huella%20de%20Origen%2C%20quisiera%20hacer%20un%20pedido" target="_blank" style="display:inline-block;width:90%;padding:14px;background:#25D366;color:white;border-radius:12px;text-decoration:none;font-weight:600;font-family:'Montserrat',sans-serif">📱 Hacer pedido por WhatsApp</a>
     </div>
   </div>
   <div class="bnav">
@@ -948,6 +951,32 @@
   </div>
 </div>
 
+<!-- LOGIN -->
+<div class="screen active" id="sc-login">
+  <div class="content" style="display:flex;flex-direction:column;justify-content:center;min-height:100vh;padding:20px">
+    <div style="text-align:center;margin-bottom:30px">
+      <img src="logohuelladeorigen.png" alt="Huella de Origen" style="height: 70px; object-fit: contain; margin-bottom: 20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#2C1810;margin-bottom:8px">Bienvenido</div>
+      <div style="font-size:13px;color:#8A7060">Inicia sesión para continuar</div>
+    </div>
+    
+    <div style="background:#FFFFFF;border:0.5px solid #E8DDD0;border-radius:16px;padding:20px;margin-bottom:16px">
+      <div style="margin-bottom:16px">
+        <label style="display:block;font-size:12px;color:#8A7060;margin-bottom:6px;font-weight:600">Nombre o Email</label>
+        <input type="text" id="loginEmail" placeholder="tu@email.com" style="width:100%;padding:12px;border:0.5px solid #D4C4B0;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:14px;outline:none">
+      </div>
+      
+      <button onclick="iniciarSesion()" style="width:100%;padding:14px;background:#2C1810;color:#F5EDD6;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;cursor:pointer;margin-bottom:10px">Iniciar sesión</button>
+      
+      <button onclick="goTo('home')" style="width:100%;padding:14px;background:transparent;color:#2C1810;border:0.5px solid #2C1810;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;cursor:pointer">Continuar sin cuenta</button>
+    </div>
+    
+    <div style="text-align:center;font-size:11px;color:#8A7060">
+      Al continuar aceptas nuestros <a href="https://huelladeorigen.com" target="_blank" style="color:#8B5E3C;text-decoration:none">términos de servicio</a>
+    </div>
+  </div>
+</div>
+
 <!-- PERFIL -->
 <div class="screen" id="sc-perfil">
   <div class="content">
@@ -993,6 +1022,9 @@
           <div class="info-item"><span class="info-lbl">Envío ciudades:</span><span style="font-size:12px">Gratis +$180.000</span></div>
         </div>
       </div>
+      <div style="padding:12px 0;margin-top:12px;border-top:0.5px solid #E8DDD0">
+        <button onclick="cerrarSesion()" style="width:100%;padding:12px;background:#C85C54;color:white;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;cursor:pointer">Cerrar sesión</button>
+      </div>
     </div>
   </div>
   <div class="bnav">
@@ -1034,6 +1066,30 @@ function goTo(s) {
   document.querySelectorAll('.screen').forEach(x => x.classList.remove('active'));
   document.getElementById('sc-' + s).classList.add('active');
   window.scrollTo(0, 0);
+}
+
+function iniciarSesion() {
+  const email = document.getElementById('loginEmail').value.trim();
+  if (email === '') {
+    alert('Por favor ingresa tu email o nombre');
+    return;
+  }
+  localStorage.setItem('usuarioHuella', email);
+  goTo('home');
+}
+
+function verificarLogin() {
+  const usuario = localStorage.getItem('usuarioHuella');
+  if (!usuario) {
+    goTo('login');
+  } else {
+    goTo('home');
+  }
+}
+
+function cerrarSesion() {
+  localStorage.removeItem('usuarioHuella');
+  goTo('login');
 }
 
 function selOpt(opt) {
@@ -1326,6 +1382,15 @@ document.getElementById('q').addEventListener('keydown', e => { if(e.key==='Ente
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(()=>{});
 }
+
+// Verificar login al cargar
+document.addEventListener('DOMContentLoaded', () => {
+  const usuario = localStorage.getItem('usuarioHuella');
+  if (usuario) {
+    document.getElementById('sc-login').classList.remove('active');
+    document.getElementById('sc-home').classList.add('active');
+  }
+});
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
