@@ -262,7 +262,7 @@
 <!-- SPLASH -->
 <div class="screen" id="sc-splash">
   <div class="splash-box">
-    <img src="logohuelladeorigen.png" alt="Huella de Origen" style="height: 100px; margin-bottom: 20px; object-fit: contain;">
+    <img src="logohuelladeorigen.png" alt="Huella de Origen" style="height: 120px; margin-bottom: 20px; object-fit: contain;">
     <div class="sp-sub">Café de Especialidad</div>
     <div class="sp-tag">"Del campo a tu taza"</div>
     <div class="sp-desc">Cafés únicos y artesanales, cultivados y tostados exclusivamente en Colombia — el mayor productor mundial de café Arábica recolectado a mano.</div>
@@ -663,7 +663,7 @@
             <span class="badge bb">✓ Verificado</span>
           </div>
         </div>
-        <div class="sca-block"><div class="sca-num">87</div><div class="sca-lbl">SCA SCORE</div><div style="font-size:11px;color:#E8C97D;margin-top:3px">★ 4.90</div></div>
+        <div class="sca-block"><div class="sca-num">86</div><div class="sca-lbl">SCA SCORE</div><div style="font-size:11px;color:#E8C97D;margin-top:3px">★ 4.90</div></div>
       </div>
       <div class="src-ban">✓ Verificado desde etiqueta y huelladeorigen.com</div>
       <div class="grid3">
@@ -789,7 +789,7 @@
             <span class="badge bb">✓ Verificado</span>
           </div>
         </div>
-        <div class="sca-block"><div class="sca-num">85+</div><div class="sca-lbl">PROMEDIO SCA</div><div style="font-size:11px;color:#E8C97D;margin-top:3px">★ 5.00</div></div>
+        <div class="sca-block"><div class="sca-num">86+</div><div class="sca-lbl">PROMEDIO SCA</div><div style="font-size:11px;color:#E8C97D;margin-top:3px">★ 5.00</div></div>
       </div>
       <div class="src-ban">✓ Combinación de Chivito y Quetzal verificados</div>
       <div class="grid3">
@@ -981,7 +981,7 @@
 <div class="screen" id="sc-perfil">
   <div class="content">
     <div class="prof-hero">
-      <img src="logohuelladeorigen.png" alt="Huella de Origen" style="height: 60px; object-fit: contain; margin-bottom: 12px;">
+      <img src="logohuelladeorigen.png" alt="Huella de Origen" style="height: 80px; object-fit: contain; margin-bottom: 12px;">
       <div class="prof-name">Mi Perfil</div>
       <div class="prof-sub">Amante del café de especialidad</div>
       <div class="prof-stats">
@@ -1146,37 +1146,21 @@ function getApiKey(id) {
 
 async function analizarIA() {
   if (!imgB64) return;
-  const apiKey = getApiKey('api-key');
-  if (!apiKey) return;
 
   document.getElementById('loading').classList.add('show');
   document.getElementById('result-box').classList.remove('show');
   loadTimer = startLoadMsg('load-txt', curOpt);
 
-  const systemM = `Eres un Q-Grader SCA experto en granulometría y tueste. Analiza la imagen de café molido detectando tipo de molienda POR TAMAÑO DE PARTÍCULA y tueste POR COLOR. Responde SOLO JSON sin markdown:
-{"molienda_tipo":"Media-Fina","molienda_micras":"~400-500 micras","molienda_desc":"descripción","tueste_nivel":"Medio","tueste_color":"descripción del color","agtron":"65-75","sobre_tostado":false,"aceite":false,"confianza":"Alta","metodos":[{"n":"V60","i":"☕","c":"ideal","r":"razón"},{"n":"Chemex","i":"🧪","c":"ideal","r":"razón"},{"n":"AeroPress","i":"🔧","c":"ok","r":"razón"},{"n":"Prensa Francesa","i":"🫖","c":"ok","r":"razón"},{"n":"Espresso","i":"⚡","c":"no","r":"razón"},{"n":"Moka/Greca","i":"🏺","c":"no","r":"razón"},{"n":"Cold Brew","i":"🧊","c":"ok","r":"razón"}],"temp":"92°C","sabores":["Chocolate","Caramelo"],"tips":["tip1","tip2","tip3"],"adv":null}`;
-
-  const systemT = `Eres un Q-Grader SCA experto en análisis sensorial. Analiza el COLOR del café en la taza. Responde SOLO JSON sin markdown:
-{"bebida":"Filtrado","color":"descripción","hex":"#6B3A2A","extraccion":"Bien extraído","concentracion":"Balanceado","tueste":"Medio","agtron":"65-75","crema":false,"transparencia":"Semi-opaco","confianza":"Alta","puntaje":82,"diagnostico":[{"i":"🎨","n":"Color","e":"bien","d":"descripción"},{"i":"💧","n":"Extracción","e":"bien","d":"descripción"},{"i":"⚖️","n":"Concentración","e":"bien","d":"descripción"},{"i":"🔥","n":"Tueste inferido","e":"bien","d":"descripción"}],"sabores":["Chocolate","Caramelo"],"ajustes":["ajuste1","ajuste2","ajuste3"],"adv":null}`;
-
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const endpoint = curOpt === 'molienda' ? '/api/analizar' : '/api/analizar';
+    const res = await fetch(endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514', max_tokens: 1000,
-        system: curOpt === 'molienda' ? systemM : systemT,
-        messages: [{ role: 'user', content: [
-          { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: imgB64 } },
-          { type: 'text', text: 'Analiza esta imagen de café.' }
-        ]}]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ base64Image: imgB64 })
     });
-    const data = await res.json();
-    const raw = (data.content||[]).map(b=>b.text||'').join('');
-    const match = raw.match(/\{[\s\S]*\}/);
-    if (!match) throw new Error('sin resultado');
-    const d = JSON.parse(match[0]);
+    const d = await res.json();
+    if (d.error) throw new Error(d.error);
+    
     clearInterval(loadTimer);
     document.getElementById('loading').classList.remove('show');
     document.getElementById('result-box').innerHTML = curOpt === 'molienda' ? renderMolienda(d) : renderTaza(d);
@@ -1184,41 +1168,27 @@ async function analizarIA() {
   } catch(e) {
     clearInterval(loadTimer);
     document.getElementById('loading').classList.remove('show');
-    document.getElementById('result-box').innerHTML = `<div style="padding:14px;color:#8B0000;font-size:13px">Error: ${e.message}. Verifica tu API Key e intenta de nuevo.</div>`;
+    document.getElementById('result-box').innerHTML = `<div style="padding:14px;color:#8B0000;font-size:13px">Error: ${e.message}</div>`;
     document.getElementById('result-box').classList.add('show');
   }
 }
 
 async function escanearEtiqueta() {
   if (!scanB64) return;
-  const apiKey = getApiKey('api-key-scan');
-  if (!apiKey) return;
 
   document.getElementById('load-scan').classList.add('show');
   document.getElementById('scan-result').classList.remove('show');
   scanTimer = startLoadMsg('load-scan-txt', 'scan');
 
-  const system = `Eres experto en leer etiquetas de café. Extrae TODA la información visible en la imagen del empaque. SOLO JSON sin markdown:
-{"nombre":"nombre","marca":"marca","origen":"país y región","variedad":"variedad botánica","proceso":"proceso","altura":"msnm","tostion":"nivel","fecha_tostion":"fecha si visible","peso":"peso","sca":86,"notas":["nota1","nota2"],"certs":["certificación"],"precio":"si visible","web":"si visible","redes":"si visible","datos":"Alto|Medio|Bajo","no_encontrados":["campo no visible"]}`;
-
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/api/escanear', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514', max_tokens: 800,
-        system,
-        messages: [{ role: 'user', content: [
-          { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: scanB64 } },
-          { type: 'text', text: 'Lee esta etiqueta de café.' }
-        ]}]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ base64Image: scanB64 })
     });
-    const data = await res.json();
-    const raw = (data.content||[]).map(b=>b.text||'').join('');
-    const match = raw.match(/\{[\s\S]*\}/);
-    if (!match) throw new Error('sin resultado');
-    const d = JSON.parse(match[0]);
+    const d = await res.json();
+    if (d.error) throw new Error(d.error);
+    
     clearInterval(scanTimer);
     document.getElementById('load-scan').classList.remove('show');
     document.getElementById('scan-result').innerHTML = renderScan(d);
@@ -1234,32 +1204,21 @@ async function escanearEtiqueta() {
 async function buscar() {
   const q = document.getElementById('q').value.trim();
   if (!q) return;
-  const apiKey = getApiKey('api-key-buscar');
-  if (!apiKey) return;
 
   document.getElementById('buscar-hint').style.display = 'none';
   document.getElementById('load-buscar').classList.add('show');
   document.getElementById('buscar-result').classList.remove('show');
   buscarTimer = startLoadMsg('load-buscar-txt', 'buscar');
 
-  const system = `Eres Coffee Insight, experto en café de especialidad. Genera ficha técnica del café mencionado. SOLO JSON sin markdown:
-{"nombre":"nombre","subtitulo":"variedad·proceso·país","pais":"país","region":"región","variedad":"variedad","proceso":"proceso","altura":"msnm","tostion":"nivel","sca":85,"precio_usd":18,"tipo":"Especialidad|Comercial","sobre_tostado":false,"adv":null,"flavors":["nota1","nota2","nota3"],"recos":["rec1","rec2","rec3"],"venta":["tienda1"],"web":"url","redes":"@marca","domicilios":"info","verificado":true}`;
-
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/api/buscar', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514', max_tokens: 900,
-        system,
-        messages: [{ role: 'user', content: 'Analiza: ' + q }]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: q })
     });
-    const data = await res.json();
-    const raw = (data.content||[]).map(b=>b.text||'').join('');
-    const match = raw.match(/\{[\s\S]*\}/);
-    if (!match) throw new Error('sin resultado');
-    const d = JSON.parse(match[0]);
+    const d = await res.json();
+    if (d.error) throw new Error(d.error);
+    
     clearInterval(buscarTimer);
     document.getElementById('load-buscar').classList.remove('show');
     document.getElementById('buscar-result').innerHTML = renderBuscar(d);
