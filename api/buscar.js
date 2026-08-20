@@ -80,4 +80,3 @@ Si no conoces el café, devuelve datos aproximados basados en origen/tipo.`
     return res.status(500).json({ error: error.message });
   }
 }
-
