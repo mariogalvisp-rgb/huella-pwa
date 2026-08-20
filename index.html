@@ -586,7 +586,7 @@
           <div class="card-prod">Productor: Familia Quetzal · Finca del Tolima</div>
           <div class="badges">
             <span class="badge bg">✦ ESPECIALIDAD</span>
-            <span class="badge bo">Natural</span>
+            <span class="badge bo">Lavado</span>
             <span class="badge bo">Tostión Media</span>
             <span class="badge bb">✓ Verificado</span>
           </div>
@@ -598,7 +598,7 @@
         <div class="cell"><div class="cell-l">Origen</div><div class="cell-v">Tolima, Colombia</div></div>
         <div class="cell"><div class="cell-l">Variedad</div><div class="cell-v">Geisha</div></div>
         <div class="cell"><div class="cell-l">Altitud</div><div class="cell-v">1.900 msnm</div></div>
-        <div class="cell"><div class="cell-l">Proceso</div><div class="cell-v">Natural</div></div>
+        <div class="cell"><div class="cell-l">Proceso</div><div class="cell-v">Lavado</div></div>
         <div class="cell"><div class="cell-l">Tostión</div><div class="cell-v">Media</div></div>
         <div class="cell"><div class="cell-l">Peso</div><div class="cell-v">454g</div></div>
       </div>
@@ -608,7 +608,7 @@
           <div class="cstep v">Finca del Tolima</div>
           <div class="cstep v">Familia Quetzal</div>
           <div class="cstep v">Tolima</div>
-          <div class="cstep v">Natural</div>
+          <div class="cstep v">Lavado</div>
           <div class="cstep v">Tostión Media</div>
           <div class="cstep v">454g</div>
         </div>
@@ -832,11 +832,11 @@
     </div>
     <div style="font-size:10px;color:#8A7060;margin-bottom:12px">10 productos · Ordenados por calificación</div>
     <div class="prod-grid">
-      <div class="prod" onclick="goTo('chivito')"><img class="prod-img" src="opt_chivito.png" alt="Chivito"><div class="prod-info"><div class="prod-name">Chivito de Páramo 454g</div><div class="prod-origin">Cajamarca · SCA 86 · ★4.83</div><div class="prod-foot"><div class="prod-price">$45.900</div><button class="add-btn" onclick="event.stopPropagation();comprar('chivito')">+ Agregar</button></div></div></div>
-      <div class="prod" onclick="goTo('quetzal')"><img class="prod-img" src="opt_quetzal.png" alt="Quetzal"><div class="prod-info"><div class="prod-name">Quetzal H. Origen 454g</div><div class="prod-origin">Especialidad · ★5.00</div><div class="prod-foot"><div class="prod-price">$45.900</div><button class="add-btn" onclick="event.stopPropagation();comprar('quetzal')">+ Agregar</button></div></div></div>
-      <div class="prod" onclick="goTo('colibri')"><img class="prod-img" src="opt_colibri.png" alt="Colibrí"><div class="prod-info"><div class="prod-name">Colibrí Amazilia 454g</div><div class="prod-origin">Café Honey · ★4.90</div><div class="prod-foot"><div class="prod-price">$50.900</div><button class="add-btn" onclick="event.stopPropagation();comprar('colibri')">+ Agregar</button></div></div></div>
-      <div class="prod" onclick="goTo('duo')"><img class="prod-img" src="duo quetzal y chivito .png" alt="Dúo Chivito & Quetzal"><div class="prod-info"><div class="prod-name">Dúo Chivito & Quetzal</div><div class="prod-origin">2x454g · ★5.00</div><div class="prod-foot"><div class="prod-price">$91.000</div><button class="add-btn" onclick="event.stopPropagation();comprar('duo')">+ Agregar</button></div></div></div>
-      <div class="prod" onclick="goTo('trilogia')"><img class="prod-img" src="opt_trilogia.png" alt="Trilogía"><div class="prod-info"><div class="prod-name">Trilogía Huella 454g</div><div class="prod-origin">Experiencia · ★5.00</div><div class="prod-foot"><div class="prod-price">$135.000</div><button class="add-btn" onclick="event.stopPropagation();comprar('trilogia')">+ Agregar</button></div></div></div>
+      <div class="prod" onclick="goTo('chivito')" style="position:relative"><button data-fav="chivito" onclick="toggleFavorito('chivito');event.stopPropagation()" style="position:absolute;top:8px;right:8px;background:none;border:none;font-size:24px;cursor:pointer;z-index:10">🤍</button><img class="prod-img" src="opt_chivito.png" alt="Chivito"><div class="prod-info"><div class="prod-name">Chivito de Páramo 454g</div><div class="prod-origin">Cajamarca · SCA 86 · ★4.83</div><div class="prod-foot"><div class="prod-price">$45.900</div><button class="add-btn" onclick="event.stopPropagation();comprar('chivito')">+ Agregar</button></div></div></div>
+      <div class="prod" onclick="goTo('quetzal')" style="position:relative"><button data-fav="quetzal" onclick="toggleFavorito('quetzal');event.stopPropagation()" style="position:absolute;top:8px;right:8px;background:none;border:none;font-size:24px;cursor:pointer;z-index:10">🤍</button><img class="prod-img" src="opt_quetzal.png" alt="Quetzal"><div class="prod-info"><div class="prod-name">Quetzal H. Origen 454g</div><div class="prod-origin">Especialidad · ★5.00</div><div class="prod-foot"><div class="prod-price">$45.900</div><button class="add-btn" onclick="event.stopPropagation();comprar('quetzal')">+ Agregar</button></div></div></div>
+      <div class="prod" onclick="goTo('colibri')" style="position:relative"><button data-fav="colibri" onclick="toggleFavorito('colibri');event.stopPropagation()" style="position:absolute;top:8px;right:8px;background:none;border:none;font-size:24px;cursor:pointer;z-index:10">🤍</button><img class="prod-img" src="opt_colibri.png" alt="Colibrí"><div class="prod-info"><div class="prod-name">Colibrí Amazilia 454g</div><div class="prod-origin">Café Honey · ★4.90</div><div class="prod-foot"><div class="prod-price">$50.900</div><button class="add-btn" onclick="event.stopPropagation();comprar('colibri')">+ Agregar</button></div></div></div>
+      <div class="prod" onclick="goTo('duo')" style="position:relative"><button data-fav="duo" onclick="toggleFavorito('duo');event.stopPropagation()" style="position:absolute;top:8px;right:8px;background:none;border:none;font-size:24px;cursor:pointer;z-index:10">🤍</button><img class="prod-img" src="duo quetzal y chivito .png" alt="Dúo Chivito & Quetzal"><div class="prod-info"><div class="prod-name">Dúo Chivito & Quetzal</div><div class="prod-origin">2x454g · ★5.00</div><div class="prod-foot"><div class="prod-price">$91.000</div><button class="add-btn" onclick="event.stopPropagation();comprar('duo')">+ Agregar</button></div></div></div>
+      <div class="prod" onclick="goTo('trilogia')" style="position:relative"><button data-fav="trilogia" onclick="toggleFavorito('trilogia');event.stopPropagation()" style="position:absolute;top:8px;right:8px;background:none;border:none;font-size:24px;cursor:pointer;z-index:10">🤍</button><img class="prod-img" src="opt_trilogia.png" alt="Trilogía"><div class="prod-info"><div class="prod-name">Trilogía Huella 454g</div><div class="prod-origin">Experiencia · ★5.00</div><div class="prod-foot"><div class="prod-price">$135.000</div><button class="add-btn" onclick="event.stopPropagation();comprar('trilogia')">+ Agregar</button></div></div></div>
       <div class="prod"><img class="prod-img" src="opt_prensa-francesa.png" alt="Prensa Francesa"><div class="prod-info"><div class="prod-name">Prensa Francesa</div><div class="prod-origin">Borosilicato · Accesorio</div><div class="prod-foot"><div class="prod-price">$110.000</div><button class="add-btn" onclick="comprar('prensa')">+ Agregar</button></div></div></div>
       <div class="prod"><img class="prod-img" src="opt_jarra-ganzo.png" alt="Jarra Cuello Ganzo"><div class="prod-info"><div class="prod-name">Jarra Cuello Ganzo</div><div class="prod-origin">350ml · ★5.00</div><div class="prod-foot"><div class="prod-price">$40.000</div><button class="add-btn" onclick="comprar('jarra')">+ Agregar</button></div></div></div>
     </div>
@@ -987,27 +987,13 @@
       <div class="prof-stats">
         <div class="stat"><div class="stat-n">5</div><div class="stat-l">Probados</div></div>
         <div class="stat"><div class="stat-n">3</div><div class="stat-l">Catas</div></div>
-        <div class="stat"><div class="stat-n">3</div><div class="stat-l">Favoritos</div></div>
+        <div class="stat"><div class="stat-n" id="fav-stat">3</div><div class="stat-l">Favoritos</div></div>
       </div>
     </div>
 
     <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#2C1810;margin:0 0 10px">Mis favoritos</div>
-    <div class="fav-list">
-      <div class="fav" onclick="goTo('chivito')">
-        <img src="opt_chivito.png" alt="Chivito" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
-        <div style="flex:1"><div class="fav-name">Chivito de Páramo</div><div class="fav-meta">Huella de Origen · Cajamarca · SCA 86</div></div>
-        <div class="fav-score">86</div>
-      </div>
-      <div class="fav" onclick="goTo('quetzal')">
-        <img src="opt_quetzal.png" alt="Quetzal" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
-        <div style="flex:1"><div class="fav-name">Quetzal Huella de Origen</div><div class="fav-meta">454g · ★ 5.00</div></div>
-        <div class="fav-score">87</div>
-      </div>
-      <div class="fav" onclick="goTo('colibri')">
-        <img src="opt_colibri.png" alt="Colibrí" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
-        <div style="flex:1"><div class="fav-name">Colibrí Amazilia</div><div class="fav-meta">Café Honey · 454g · ★ 4.90</div></div>
-        <div class="fav-score">88</div>
-      </div>
+    <div class="fav-list" id="fav-items">
+      <div style="text-align:center;padding:20px;color:#999;font-size:13px">Sin favoritos aún.<br>Haz click ❤️ en la Tienda.</div>
     </div>
 
     <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#2C1810;margin:12px 0 10px">Huella de Origen</div>
@@ -1143,6 +1129,86 @@ function getApiKey(id) {
   if (!k) { alert('Por favor ingresa tu API Key de Anthropic'); return null; }
   return k;
 }
+
+// ===== FAVORITOS DINÁMICOS =====
+function toggleFavorito(prod) {
+  let favs = JSON.parse(localStorage.getItem('favoritos') || '[]');
+  if (favs.includes(prod)) {
+    favs = favs.filter(f => f !== prod);
+  } else {
+    favs.push(prod);
+  }
+  localStorage.setItem('favoritos', JSON.stringify(favs));
+  actualizarCorazones();
+  actualizarPerfil();
+}
+
+function esFavorito(prod) {
+  const favs = JSON.parse(localStorage.getItem('favoritos') || '[]');
+  return favs.includes(prod);
+}
+
+function actualizarCorazones() {
+  document.querySelectorAll('[data-fav]').forEach(el => {
+    const prod = el.getAttribute('data-fav');
+    if (esFavorito(prod)) {
+      el.textContent = '❤️';
+      el.style.color = '#E74C3C';
+    } else {
+      el.textContent = '🤍';
+      el.style.color = '#999';
+    }
+  });
+}
+
+function actualizarPerfil() {
+  const favs = JSON.parse(localStorage.getItem('favoritos') || '[]');
+  const contenedor = document.getElementById('fav-items');
+  if (!contenedor) return;
+  
+  contenedor.innerHTML = '';
+  if (favs.length === 0) {
+    contenedor.innerHTML = '<div style="text-align:center;padding:20px;color:#999;font-size:13px">Sin favoritos aún.<br>Haz click ❤️ en la Tienda.</div>';
+    const stat = document.getElementById('fav-stat');
+    if (stat) stat.textContent = '0 Favoritos';
+    return;
+  }
+  
+  const cafes = {
+    'chivito': { img: 'opt_chivito.png', name: 'Chivito' },
+    'quetzal': { img: 'opt_quetzal.png', name: 'Quetzal' },
+    'colibri': { img: 'opt_colibri.png', name: 'Colibrí' },
+    'trilogia': { img: 'opt_trilogia.png', name: 'Trilogía' },
+    'duo': { img: 'duo quetzal y chivito .png', name: 'Dúo' }
+  };
+  
+  favs.forEach(prod => {
+    if (cafes[prod]) {
+      const div = document.createElement('div');
+      div.className = 'fav-item';
+      div.style.cssText = 'display:flex;align-items:center;padding:10px;border-bottom:0.5px solid #E8DDD0';
+      div.innerHTML = `
+        <img src="${cafes[prod].img}" style="width:60px;height:70px;border-radius:6px;object-fit:cover;margin-right:12px">
+        <div style="flex:1">
+          <div style="font-size:13px;color:#2C1810;font-weight:600;cursor:pointer" onclick="goTo('${prod}')">${cafes[prod].name}</div>
+          <button onclick="toggleFavorito('${prod}');event.stopPropagation()" style="background:none;border:none;color:#999;font-size:12px;cursor:pointer;padding:4px 0;text-decoration:underline">Quitar</button>
+        </div>
+      `;
+      contenedor.appendChild(div);
+    }
+  });
+  
+  const stat = document.getElementById('fav-stat');
+  if (stat) stat.textContent = favs.length + ' Favoritos';
+}
+
+// Cargar al iniciar
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    actualizarCorazones();
+    actualizarPerfil();
+  }, 100);
+});
 
 async function analizarIA() {
   if (!imgB64) return;
