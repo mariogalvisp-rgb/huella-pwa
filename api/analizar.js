@@ -42,25 +42,55 @@ export default async function handler(req, res) {
               },
               {
                 type: 'text',
-                text: `Analiza esta foto de café molido. Proporciona un análisis JSON con:
+                text: `ANÁLISIS DE ESPECIALIDAD EN TAZA - CAFÉ
+
+Analiza esta foto de café en taza y evalúa si tiene CARACTERÍSTICAS DE ESPECIALIDAD.
+La taza puede ser de cualquier método: V60, Prensa Francesa, Espresso, Vertido, etc.
+
+Devuelve un JSON con esta estructura:
 {
-  "molienda_tipo": "Fina/Media-Fina/Media/Media-Gruesa/Gruesa",
-  "molienda_micras": "rango aproximado",
-  "molienda_desc": "descripción breve",
-  "tueste_nivel": "Claro/Medio/Oscuro",
-  "tueste_color": "descripción del color",
-  "agtron": "número estimado 30-95",
-  "sobre_tostado": true/false,
-  "aceite": true/false,
-  "confianza": "Alta/Media/Baja",
-  "metodos": [{"n":"Método","i":"emoji","c":"ideal/ok/no","r":"razón"}],
-  "temp": "temperatura recomendada",
-  "sabores": ["sabor1", "sabor2"],
+  "metodo_estimado": "V60/Prensa Francesa/Espresso/Vertido/Aeropress/otro",
+  
+  "color": {
+    "observado": "Descripción del color visible",
+    "es_cafe_no_negro": true/false,
+    "especialidad": "El color caramel/marrón claro/miel indica extracción controlada de especialidad"
+  },
+  
+  "caracteristicas_visuales": {
+    "claridad": "Clara/Traslúcida/Opaca - Las claras indican especialidad con cuerpo delicado",
+    "brillo": "Con brillo/Sin brillo - El brillo indica presencia de aceites esenciales",
+    "transparencia": "Transparente/Semi-opaca/Opaca - V60 debe ser transparente, Prensa más opaca",
+    "cuerpo_visual": "Ligero/Medio/Completo - Esperado según método"
+  },
+  
+  "extraccion": {
+    "nivel": "Sub-extraído/Óptimo/Sobre-extraído",
+    "diagnostico": "Explicación basada en color + claridad + método",
+    "IMPORTANTE": "No confundir 'sobre-extraído' con 'bien hecho para V60 o Prensa'. V60 debe ser claro/delicado. Prensa debe ser oscuro/cuerpo completo. Ambos son CORRECTOS si el color es café (no negro)."
+  },
+  
+  "calificacion_especialidad": {
+    "es_especialidad": true/false,
+    "score_visual": "1-10",
+    "razones": ["razón1: color café indica extracción controlada", "razón2: claridad/opacidad apropiada al método", "razón3: ausencia de quemado/carbonización"]
+  },
+  
+  "sabores_probables": ["sabor1", "sabor2", "sabor3"],
+  "metodos_compatibles": [{"nombre":"V60","ideal":true/false,"razón":"texto"}, {"nombre":"Prensa","ideal":true/false,"razón":"texto"}],
+  "temperatura_recomendada": "80-92°C según método",
   "tips": ["tip1", "tip2"],
-  "adv": "advertencias si hay"
+  "advertencias": "si hay alguna"
 }
 
-Sé preciso y útil.`
+CRITERIOS DE ESPECIALIDAD EN TAZA:
+✓ Color caramel/marrón claro (NO negro) = BUENA EXTRACCIÓN
+✓ V60: Transparente, cuerpo ligero/medio, ácido visible = CORRECTO
+✓ Prensa: Más opaco, cuerpo completo, sedoso = CORRECTO
+✓ Presencia de brillo = Aceites esenciales presentes = ESPECIALIDAD
+✓ Ausencia de carbonización/quemado = CONTROL DE TEMPERATURA
+
+Sé preciso. El color café es una FORTALEZA de especialidad, no un defecto.`
               }
             ]
           }
