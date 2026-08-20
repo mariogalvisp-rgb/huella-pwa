@@ -91,3 +91,4 @@ Extrae solo la información visible. Sé preciso.`
     return res.status(500).json({ error: error.message });
   }
 }
+
