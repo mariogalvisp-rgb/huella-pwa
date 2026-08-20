@@ -42,46 +42,7 @@ export default async function handler(req, res) {
               },
               {
                 type: 'text',
-                text: `ANÁLISIS DE TRAZABILIDAD - CAFÉ DE ESPECIALIDAD
-
-Analiza esta etiqueta de café y extrae INFORMACIÓN DE TRAZABILIDAD.
-La bolsa puede estar sellada, molida o en grano.
-
-Devuelve un JSON con esta estructura:
-{
-  "cafe_nombre": "nombre del café",
-  "productor": "nombre del productor",
-  "finca": "nombre de la finca",
-  "origen": "país/región/ciudad",
-  "altitud": "msnm (ej: 1800 msnm)",
-  "variedad": "varietal(es) - ej: Castillo, Geisha, Colombia",
-  "proceso": "Lavado/Natural/Honey/Fermentado/otro",
-  "sca_score": "número si aparece (ej: 86)",
-  "peso": "tamaño de bolsa",
-  "tostador": "nombre del tostador/marca",
-  "fecha": "fecha de tostado si aparece",
-  "certificaciones": ["Orgánico", "Fair Trade", "Direct Trade", "etc"],
-  
-  "trazabilidad_calificacion": "Excelente/Buena/Básica",
-  "trazabilidad_detalles": "Evalúa: origen específico + altitud + variedad + proceso + SCA. Un café de especialidad debe tener origen específico (no 'Blend'), altitud, variedad y método de proceso claramente identificados.",
-  
-  "caracteristicas_especialidad": {
-    "tiene_origen_especifico": true/false,
-    "tiene_altitud": true/false,
-    "tiene_variedad": true/false,
-    "tiene_sca_score": true/false,
-    "tiene_proceso_identificado": true/false
-  },
-  
-  "es_especialidad": true/false,
-  "por_que": "Explicación clara si cumple o no con estándares de especialidad"
-}
-
-IMPORTANTE:
-- Extrae EXACTAMENTE lo que ves en la etiqueta
-- Califica como "especialidad" solo si: origen específico + altitud + variedad + proceso claramente identificados
-- Si está sellado, no importa - extrae la información visible del empaque
-- SCA 85+ es estándar de especialidad`
+                text: `ANÁLISIS DE TRAZABILIDAD - CAFÉ DE ESPECIALIDAD\n\nAnaliza esta etiqueta de café y extrae INFORMACIÓN DE TRAZABILIDAD.\nLa bolsa puede estar sellada, molida o en grano.\n\nDevuelve un JSON con:\n{\n  "cafe_nombre": "nombre del café",\n  "productor": "nombre del productor",\n  "finca": "nombre de la finca",\n  "origen": "país/región/ciudad",\n  "altitud": "msnm (ej: 1800 msnm)",\n  "variedad": "varietal(es)",\n  "proceso": "Lavado/Natural/Honey/Fermentado",\n  "sca_score": "número si aparece (ej: 86)",\n  "peso": "tamaño de bolsa",\n  "tostador": "nombre del tostador",\n  "fecha": "fecha de tostado si aparece",\n  "certificaciones": ["Orgánico", "Fair Trade"],\n  "trazabilidad_calificacion": "Excelente/Buena/Básica",\n  "caracteristicas_especialidad": {\n    "tiene_origen_especifico": true,\n    "tiene_altitud": true,\n    "tiene_variedad": true,\n    "tiene_sca_score": true,\n    "tiene_proceso_identificado": true\n  },\n  "es_especialidad": true,\n  "razon": "Explicación clara"\n}\n\nIMPORTANTE: Extrae exactamente lo que ves. SCA 85+ es especialidad.`
               }
             ]
           }
