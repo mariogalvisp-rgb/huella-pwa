@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-3-5-haiku-20241022',
+        model: 'claude-opus-4-1',
         max_tokens: 1024,
         messages: [
           {
@@ -80,3 +80,4 @@ Si no conoces el café, devuelve datos aproximados basados en origen/tipo.`
     return res.status(500).json({ error: error.message });
   }
 }
+
