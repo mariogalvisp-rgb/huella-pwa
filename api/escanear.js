@@ -42,23 +42,46 @@ export default async function handler(req, res) {
               },
               {
                 type: 'text',
-                text: `Extrae información de esta etiqueta de café. Devuelve un JSON:
+                text: `ANÁLISIS DE TRAZABILIDAD - CAFÉ DE ESPECIALIDAD
+
+Analiza esta etiqueta de café y extrae INFORMACIÓN DE TRAZABILIDAD.
+La bolsa puede estar sellada, molida o en grano.
+
+Devuelve un JSON con esta estructura:
 {
-  "nombre": "nombre del café",
-  "marca": "marca/productor",
-  "origen": "país/región",
-  "ciudad": "ciudad",
-  "sca": número,
-  "proceso": "Lavado/Natural/Honey",
-  "altitud": "msnm",
-  "varietales": ["varietal1", "varietal2"],
-  "notas": ["nota1", "nota2"],
-  "peso": "cantidad",
-  "toste": "Claro/Medio/Oscuro",
-  "url": "URL si aparece"
+  "cafe_nombre": "nombre del café",
+  "productor": "nombre del productor",
+  "finca": "nombre de la finca",
+  "origen": "país/región/ciudad",
+  "altitud": "msnm (ej: 1800 msnm)",
+  "variedad": "varietal(es) - ej: Castillo, Geisha, Colombia",
+  "proceso": "Lavado/Natural/Honey/Fermentado/otro",
+  "sca_score": "número si aparece (ej: 86)",
+  "peso": "tamaño de bolsa",
+  "tostador": "nombre del tostador/marca",
+  "fecha": "fecha de tostado si aparece",
+  "certificaciones": ["Orgánico", "Fair Trade", "Direct Trade", "etc"],
+  
+  "trazabilidad_calificacion": "Excelente/Buena/Básica",
+  "trazabilidad_detalles": "Evalúa: origen específico + altitud + variedad + proceso + SCA. Un café de especialidad debe tener origen específico (no 'Blend'), altitud, variedad y método de proceso claramente identificados.",
+  
+  "caracteristicas_especialidad": {
+    "tiene_origen_especifico": true/false,
+    "tiene_altitud": true/false,
+    "tiene_variedad": true/false,
+    "tiene_sca_score": true/false,
+    "tiene_proceso_identificado": true/false
+  },
+  
+  "es_especialidad": true/false,
+  "por_que": "Explicación clara si cumple o no con estándares de especialidad"
 }
 
-Extrae solo la información visible. Sé preciso.`
+IMPORTANTE:
+- Extrae EXACTAMENTE lo que ves en la etiqueta
+- Califica como "especialidad" solo si: origen específico + altitud + variedad + proceso claramente identificados
+- Si está sellado, no importa - extrae la información visible del empaque
+- SCA 85+ es estándar de especialidad`
               }
             ]
           }
