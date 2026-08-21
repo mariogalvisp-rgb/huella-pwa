@@ -42,16 +42,25 @@ export default async function handler(req, res) {
               },
               {
                 type: 'text',
-                text: `Analiza esta foto de café en taza. Devuelve SOLO JSON válido, sin texto adicional:
+                text: `Analiza esta foto de café en taza como especialista SCA. DEVUELVE SOLO JSON VÁLIDO:
 
 {
-  "metodo": "V60 o Prensa Francesa",
-  "color_observado": "marrón claro",
-  "es_especialidad": true,
-  "score": 8,
-  "temperatura": "85-90C",
-  "sabor1": "chocolate",
-  "sabor2": "frutas"
+  "bebida": "Café de especialidad",
+  "extraccion": "Bien extraído",
+  "color": "Marrón (describe el tono)",
+  "tueste": "Medio",
+  "concentracion": "Cuerpo medio-completo",
+  "confianza": "Alta",
+  "puntaje": 82,
+  "hex": "#6B4423",
+  "agtron": "55",
+  "diagnostico": [
+    {"n": "Color", "d": "Tono marrón indica extracción balanceada", "e": "bien", "i": "✓"},
+    {"n": "Claridad", "d": "Bebida transparente vs opaca según método", "e": "bien", "i": "✓"},
+    {"n": "Cuerpo", "d": "Viscosidad apropiada para especialidad", "e": "bien", "i": "✓"}
+  ],
+  "sabores": ["chocolate oscuro", "frutas secas", "nueces", "caramelo"],
+  "ajustes": ["Mantener tiempo de extracción 4-5 minutos", "Temperatura de agua 85-90°C", "Molienda media consistente"]
 }`
               }
             ]
