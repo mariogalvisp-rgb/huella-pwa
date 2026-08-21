@@ -1263,18 +1263,50 @@ function renderScan(d){if(!d||typeof d!='object')return '<div style="padding:14p
 
 function renderEtiqueta(d) {
   if (!d || typeof d !== 'object') return '<div style="padding:14px;color:#8B0000">Error</div>';
-  const sca = d.sca || 86;
-  const rating = d.rating || 4.83;
-  const verificado = d.verificado !== false;
-  const badges = (d.badges||[{icon:'✦',text:'ESPECIALIDAD',bg:'#8B6F47',color:'#F5EDD6'},{icon:'↻',text:'Lavado',bg:'#F5EDD6',color:'#5A4030'},{icon:'☕',text:'Tostión Media',bg:'#F5EDD6',color:'#5A4030'}]).map(b => `<span class="badge" style="background:${b.bg||'#8B6F47'};color:${b.color||'#F5EDD6'};font-size:11px;padding:6px 12px;border-radius:20px;margin-right:8px;display:inline-block">${b.icon||''} ${b.text||''}</span>`).join('');
-  const trazabilidad = (d.trazabilidad||['Finca de origen','Productor','Región','Proceso','Tostión','Peso']).map(t => `<div style="padding:8px 12px;background:#F1F8F1;border-radius:6px;font-size:11px;color:#2C1810">${t}</div>`).join('');
+  
+  const tipo = d.tipo_cafe || 'Comercial';
+  const esComericial = d.tipo_cafe === 'Comercial' || d.tipo_cafe === 'Masa';
+  const sca = d.sca || null;
+  const rating = d.rating || null;
+  const verificado = d.verificado === true;
+  
+  // Badges dinámicos según tipo
+  const badges = (() => {
+    if (esComericial) {
+      // Café COMERCIAL: mostrar lo que SÍ tiene
+      const badgesList = [];
+      if (d.tostion) badgesList.push({icon:'☕', text: `Tostión ${d.tostion}`, bg:'#8B6F47', color:'#F5EDD6'});
+      if (d.proceso) badgesList.push({icon:'↻', text: d.proceso, bg:'#F5EDD6', color:'#5A4030'});
+      badgesList.push({icon:'100%', text: 'Puro', bg:'#D4A574', color:'#2C1810'});
+      badgesList.push({icon:'⚠', text: 'Sin Trazabilidad', bg:'#FFF3E0', color:'#E65100'});
+      return badgesList;
+    } else {
+      // Café ESPECIALIDAD: badges normales
+      return (d.badges||[{icon:'✦',text:'ESPECIALIDAD',bg:'#8B6F47',color:'#F5EDD6'},{icon:'↻',text:'Lavado',bg:'#F5EDD6',color:'#5A4030'},{icon:'☕',text:'Tostión Media',bg:'#F5EDD6',color:'#5A4030'}]);
+    }
+  })();
+  
+  const badgesHtml = badges.map(b => `<span class="badge" style="background:${b.bg||'#8B6F47'};color:${b.color||'#F5EDD6'};font-size:11px;padding:6px 12px;border-radius:20px;margin-right:8px;display:inline-block">${b.icon||''} ${b.text||''}</span>`).join('');
+  
+  const trazabilidad = esComericial 
+    ? (d.trazabilidad_items || ['Proceso: Lavado documentado', 'Tostión: Fuerte especificado', 'Pureza: 100% confirmado']).map(t => `<div style="padding:8px 12px;background:#FFF3E0;border-radius:6px;font-size:11px;color:#E65100;border-left:3px solid #FFA500">${t}</div>`).join('')
+    : (d.trazabilidad||['Finca de origen','Productor','Región','Proceso','Tostión','Peso']).map(t => `<div style="padding:8px 12px;background:#F1F8F1;border-radius:6px;font-size:11px;color:#2C1810">${t}</div>`).join('');
+  
   const notas = (d.notas||['Chocolate','Frutas secas','Caramelo','Floral']).map(n => `<span class="ftag" style="background:#F5EDD6;color:#5A4030">${n}</span>`).join('');
   const preparacion = (d.preparacion||['Agua fresca a 92-93°C','Ratio 1:15 · Molienda media','Ideal negro — sin azúcar']).map(p => `<div style="margin-bottom:8px;font-size:12px;color:#2C1810;padding-left:20px;position:relative"><span style="position:absolute;left:0">•</span>${p}</div>`).join('');
-  const scaBadge = `<div style="text-align:center"><div style="font-size:48px;font-weight:700;color:#D4A574">${sca}</div><div style="font-size:10px;letter-spacing:2px;color:#A89080">SCA SCORE</div></div>`;
-  const ratingBadge = `<div style="font-size:13px;color:#D4A574">★ ${rating}</div>`;
-  const verificadoBox = verificado ? `<div style="background:#E8F5E9;padding:12px;border-radius:8px;font-size:12px;color:#2E7D32;margin-bottom:16px"><span style="font-size:14px">✓</span> Verificado desde etiqueta y huelladeorigen.com</div>` : '';
-  const gridCell = (l,v) => `<div style="padding:12px;border-right:1px solid #E8DDD0"><div style="font-size:10px;letter-spacing:1px;color:#7A6050;font-weight:600">${l}</div><div style="font-size:14px;color:#2C1810;font-weight:600;margin-top:4px">${v||'—'}</div></div>`;
-  return `<div style="background:#FEFDFB;border-radius:12px;overflow:hidden;border:1px solid #E8DDD0;margin-bottom:16px"><div style="background:linear-gradient(135deg,#8B6F47,#6B5344);color:#F5EDD6;padding:20px;position:relative"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div style="flex:1"><div style="font-size:28px;font-weight:700;font-family:'Playfair Display',serif;margin-bottom:4px">${d.nombre||'Café Huella de Origen'}</div><div style="font-size:12px;color:#D4A574;margin-bottom:8px">${d.marca||'Productor Colombiano'}</div><div style="font-size:11px;color:#C9B5A0;font-style:italic;margin-bottom:12px">${d.productor?`Productor: ${d.productor}`:''} ${d.finca?`· Finca ${d.finca}`:''}</div><div style="display:flex;flex-wrap:wrap;gap:6px">${badges}</div></div><div style="text-align:right">${scaBadge}${ratingBadge}</div></div></div><div style="padding:16px">${verificadoBox}<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid #E8DDD0;border-radius:8px;margin-bottom:16px;overflow:hidden">${gridCell('ORIGEN',d.origen||'Colombia')}${gridCell('VARIEDAD',d.variedad||'Arábica')}${gridCell('ALTITUD',d.altura||'1800 msnm')}</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid #E8DDD0;border-radius:8px;margin-bottom:16px;overflow:hidden">${gridCell('PROCESO',d.proceso||'Lavado')}${gridCell('TOSTIÓN',d.tostion||'Medio')}${gridCell('PESO',d.peso||'454g')}</div><div style="margin-bottom:16px"><div style="font-size:10px;letter-spacing:2px;color:#7A6050;font-weight:600;margin-bottom:8px">TRAZABILIDAD</div><div style="display:flex;flex-wrap:wrap;gap:8px">${trazabilidad}</div></div><div style="margin-bottom:16px"><div style="font-size:10px;letter-spacing:2px;color:#7A6050;font-weight:600;margin-bottom:8px">PERFIL SENSORIAL</div><div style="display:flex;flex-wrap:wrap;gap:6px">${notas}</div></div><div><div style="font-size:10px;letter-spacing:2px;color:#7A6050;font-weight:600;margin-bottom:8px">PREPARACIÓN RECOMENDADA</div>${preparacion}</div></div></div>`;
+  
+  // Badge SCA: mostrar solo si verificable
+  const scaBadge = sca && d.sca_verificable ? `<div style="text-align:center"><div style="font-size:48px;font-weight:700;color:#D4A574">${sca}</div><div style="font-size:10px;letter-spacing:2px;color:#A89080">SCA SCORE</div></div>` : `<div style="text-align:center;color:#8B5000"><div style="font-size:14px;font-weight:600">⚠</div><div style="font-size:10px;letter-spacing:2px">${d.sca_nota || 'No verificado'}</div></div>`;
+  
+  const ratingBadge = rating ? `<div style="font-size:13px;color:#D4A574">★ ${rating}</div>` : '';
+  
+  const tipoCafe = esComericial 
+    ? `<div style="background:#FFF3E0;padding:12px;border-radius:8px;font-size:12px;color:#E65100;margin-bottom:16px;border-left:4px solid #FFA500"><strong>📊 Clasificación:</strong> ${d.clasificacion_final || 'CAFÉ COMERCIAL'}</div>`
+    : `<div style="background:#E8F5E9;padding:12px;border-radius:8px;font-size:12px;color:#2E7D32;margin-bottom:16px"><span style="font-size:14px">✓</span> Verificado desde etiqueta y huelladeorigen.com</div>`;
+  
+  const gridCell = (l,v) => `<div style="padding:12px;border-right:1px solid #E8DDD0"><div style="font-size:10px;letter-spacing:1px;color:#7A6050;font-weight:600">${l}</div><div style="font-size:14px;color:#2C1810;font-weight:600;margin-top:4px;${!v ? 'color:#B0A090;font-style:italic' : ''}">${v||'N/A'}</div></div>`;
+  
+  return `<div style="background:#FEFDFB;border-radius:12px;overflow:hidden;border:1px solid #E8DDD0;margin-bottom:16px"><div style="background:linear-gradient(135deg,${esComericial ? '#A89060' : '#8B6F47'},${esComericial ? '#8B7555' : '#6B5344'});color:#F5EDD6;padding:20px;position:relative"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div style="flex:1"><div style="font-size:28px;font-weight:700;font-family:'Playfair Display',serif;margin-bottom:4px">${d.nombre||'Café'}</div><div style="font-size:12px;color:#D4A574;margin-bottom:8px">${d.marca||'Productor'}</div><div style="font-size:11px;color:#C9B5A0;font-style:italic;margin-bottom:12px">${d.productor?`Productor: ${d.productor}`:''} ${d.finca?`· Finca ${d.finca}`:''}</div><div style="display:flex;flex-wrap:wrap;gap:6px">${badgesHtml}</div></div><div style="text-align:right">${scaBadge}${ratingBadge}</div></div></div><div style="padding:16px">${tipoCafe}<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid #E8DDD0;border-radius:8px;margin-bottom:16px;overflow:hidden">${gridCell('ORIGEN',d.origen)}${gridCell('VARIEDAD',d.variedad)}${gridCell('ALTITUD',d.altura)}</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid #E8DDD0;border-radius:8px;margin-bottom:16px;overflow:hidden">${gridCell('PROCESO',d.proceso)}${gridCell('TOSTIÓN',d.tostion)}${gridCell('PESO',d.peso)}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #E8DDD0;border-radius:8px;margin-bottom:16px;overflow:hidden">${gridCell('SCA',d.sca && d.sca_verificable ? d.sca : null)}${gridCell('FINCA',d.finca)}</div><div style="margin-bottom:16px"><div style="font-size:10px;letter-spacing:2px;color:#7A6050;font-weight:600;margin-bottom:8px">${esComericial ? 'INFORMACIÓN VERIFICABLE' : 'TRAZABILIDAD'}</div><div style="display:flex;flex-wrap:wrap;gap:8px">${trazabilidad}</div></div><div style="margin-bottom:16px"><div style="font-size:10px;letter-spacing:2px;color:#7A6050;font-weight:600;margin-bottom:8px">PERFIL SENSORIAL</div><div style="display:flex;flex-wrap:wrap;gap:6px">${notas}</div></div><div><div style="font-size:10px;letter-spacing:2px;color:#7A6050;font-weight:600;margin-bottom:8px">PREPARACIÓN RECOMENDADA</div>${preparacion}</div>${d.notas_barista?`<div style="margin-top:16px;background:#E8F5E9;padding:12px;border-radius:8px;font-size:11px;color:#1B5E20;border-left:4px solid #2E7D32"><strong>📝 Análisis:</strong> ${d.notas_barista}</div>`:''}</div></div>`;
 }
 
 function selM(k) {
