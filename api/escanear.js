@@ -19,84 +19,92 @@ export default async function handler(req, res) {
   }
 
   // PROMPT PROFESIONAL DE BARISTA - ESCANEAR ETIQUETA
-  const promptEtiqueta = `ERES BARISTA PROFESIONAL CON 15+ AÑOS Y EXPERTO EN LECTURA DE ETIQUETAS. ANALIZA ESTA FOTO DE ETIQUETA DE CAFÉ:
+  const promptEtiqueta = `ERES BARISTA PROFESIONAL CON 15+ AÑOS Y EXPERTO EN LECTURA DE ETIQUETAS.
+
+TAREA CRÍTICA: Diferencia entre ESPECIALIDAD vs COMERCIAL
+
+ESPECIALIDAD = SCA 86+ + Trazabilidad REAL (finca, región, altitud, variedad)
+COMERCIAL = Sin trazabilidad, genérico, SCA no verificable
 
 PASO 1 - EXTRAE INFORMACIÓN VISIBLE:
 - Nombre del café
 - Marca/Productor
-- Origen/País (ej: Colombia, Etiopía)
-- Variedad de grano (ej: Bourbon, Geisha, Typica)
-- Altitud de cultivo (ej: 1800-2100 msnm)
+- Origen (ej: "Colombia" genérico vs "Nariño, Finca X")
+- Variedad (ej: "Bourbon Rojo" específico vs "Arábica" genérico)
+- Altitud (ej: "1800-2100 msnm" específico vs AUSENTE)
 - Proceso (Lavado, Natural, Honey, Fermentado)
-- Tostión (Claro, Medio-Claro, Medio, Medio-Oscuro, Oscuro)
-- Peso (ej: 454g, 250g, 1kg)
+- Tostión (Claro, Medio, Fuerte, Oscuro) - SIEMPRE INCLUYE SI APARECE
+- Peso
 - SCA Score (si aparece)
 - Rating (★ si aparece)
-- Notas de sabor/cata
-- Información de trazabilidad
 
-PASO 2 - CLASIFICA CONFIANZA EN LECTURA:
-- Alta: Etiqueta clara, legible, buena fotografía
-- Media: Etiqueta legible pero con pequeños reflejos o ángulo
-- Baja: Etiqueta borrosa o parcialmente visible
+PASO 2 - VALIDA TRAZABILIDAD:
+ESPECIALIDAD = Finca NOMBRADA + Región ESPECÍFICA + Altitud EXACTA + Variedad ESPECÍFICA
+COMERCIAL = "Colombia" genérico, "Arábica" genérico, sin finca, sin altitud exacta
 
-PASO 3 - VALIDA CON CRITERIOS DE ESPECIALIDAD:
-- SCA 86+ = Especialidad confirmada
-- Si SCA <85 = Café de origen pero no SCA
-- Si Rating ★ alto = Satisfacción de cliente confirmada
+PASO 3 - VALIDA CERTIFICACIÓN SCA:
+- SCA VERIFICABLE = Viene con certificado oficial, número de lote, datos de cata
+- SCA NO VERIFICABLE = Solo dice "SCA 86" en el empaque sin certificación real
+- COMERCIAL = No dice SCA, solo "de masa"
 
-PASO 4 - NOTAS DE COHERENCIA:
-Si etiqueta dice "Tostión Oscuro" → espero ver Agtron 25-35
-Si etiqueta dice "Tostión Medio" → espero ver Agtron 55-65
-Si la tostión mencionada es coherente = "Consistente"
+PASO 4 - CLASIFICA TIPO DE CAFÉ:
+- ESPECIALIDAD: Trazabilidad completa + SCA 86+ verificable
+- COMERCIAL: Falta trazabilidad O SCA no verificable
+- MASA: Genérico, sin información técnica
+
+PASO 5 - CONFIANZA EN LECTURA:
+- Alta: Etiqueta clara, legible, foto nítida
+- Media: Legible pero con pequeños reflejos
+- Baja: Borrosa o parcialmente visible
 
 DEVUELVE SOLO JSON (sin backticks):
 {
-  "nombre": "Chivito de Páramo",
-  "marca": "Huella de Origen",
-  "productor": "Cooperativa Páramo",
-  "finca": "La Floresta",
+  "nombre": "Viejo Molino",
+  "marca": "Viejo Molino",
+  "tipo_cafe": "Comercial",
+  "trazabilidad": "Genérica (sin finca, región o altitud exacta)",
   "origen": "Colombia",
   "pais": "Colombia",
-  "region": "Nariño",
-  "variedad": "Bourbon Rojo",
-  "altura": "1800-2100 msnm",
+  "region": null,
+  "finca": null,
+  "variedad": "Arábica (genérica, no específica)",
+  "altura": null,
   "proceso": "Lavado",
-  "tostion": "Medio",
-  "tostion_nivel": "Medio",
+  "tostion": "Fuerte",
+  "tostion_nivel": "Fuerte",
   "peso": "454g",
-  "sca": 86,
-  "rating": 4.83,
-  "verificado": true,
+  "sca": null,
+  "sca_verificable": false,
+  "sca_nota": "No es café SCA certificado - solo publicidad en empaque",
+  "rating": null,
+  "verificado": false,
   "confianza": "Alta",
   "badges": [
-    {"icon": "✦", "text": "ESPECIALIDAD", "bg": "#8B6F47", "color": "#F5EDD6"},
-    {"icon": "↻", "text": "Lavado", "bg": "#F5EDD6", "color": "#5A4030"},
-    {"icon": "☕", "text": "Tostión Medio", "bg": "#F5EDD6", "color": "#5A4030"}
+    {"icon": "☕", "text": "Tostión Fuerte", "bg": "#8B6F47", "color": "#F5EDD6"},
+    {"icon": "100%", "text": "Puro", "bg": "#F5EDD6", "color": "#5A4030"},
+    {"icon": "↻", "text": "Lavado", "bg": "#F5EDD6", "color": "#5A4030"}
   ],
-  "trazabilidad": [
-    "Finca verificada",
-    "Productor certificado",
-    "Región de origen",
-    "Proceso documentado",
-    "Tostión controlada",
-    "Peso neto"
+  "trazabilidad_items": [
+    "Proceso: Lavado documentado",
+    "Tostión: Fuerte especificado",
+    "Pureza: 100% confirmado"
   ],
   "notas": [
-    "Chocolate oscuro",
-    "Frutas secas",
-    "Caramelo",
-    "Cuerpo completo"
+    "Cuerpo robusto",
+    "Sabor fuerte",
+    "Amargor intenso",
+    "Ideal para postres"
   ],
   "preparacion": [
-    "Agua fresca a 92-93°C",
-    "Ratio 1:15 · Molienda media",
-    "Ideal negro — sin azúcar"
+    "Agua 85-88°C (tostión fuerte)",
+    "Ratio 1:10-1:12 para más cuerpo",
+    "Ideal con leche o negro fuerte",
+    "Prensa Francesa recomendada"
   ],
-  "web": "https://huelladeorigen.com",
-  "redes": "@huelladeorigen",
-  "coherencia_tostion": "Consistente",
-  "notas_barista": "Etiqueta clara y completa, café de especialidad confirmado SCA 86+"
+  "web": null,
+  "redes": null,
+  "clasificacion_final": "CAFÉ COMERCIAL / DE MASA",
+  "notas_barista": "Café comercial sin certificación SCA. Información verificable: Tostión Fuerte, Proceso Lavado, 100% Puro. Sin trazabilidad de finca. Ideal para uso doméstico masivo."
 }`;
 
   try {
