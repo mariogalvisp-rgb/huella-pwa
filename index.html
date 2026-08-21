@@ -634,94 +634,34 @@
       <button class="install-btn" onclick="this.closest('.install-banner').style.display='none'">✓ OK</button>
     </div>
 
-    <div class="positioning">
-      <div class="positioning-text">Tu café. Su origen. Toda la historia.</div>
-    </div>
-
     <div class="sec-hdr">
-      <div class="sec-h">4 Formas de Descubrir</div>
+      <div class="sec-h">Conoce Mejor Tu Café</div>
     </div>
     <div class="experiences-grid">
-      <div class="experience-card" onclick="goTo('tienda')">
-        <div class="experience-icon">🌱</div>
-        <div class="experience-title">Descubre</div>
-        <div class="experience-desc">Encuentra nuevos cafés de especialidad</div>
-      </div>
       <div class="experience-card" onclick="goTo('camara')">
         <div class="experience-icon">📷</div>
         <div class="experience-title">Analiza</div>
-        <div class="experience-desc">Evalúa la calidad de tu café</div>
+        <div class="experience-desc">Descubre qué hay detrás de tu café</div>
       </div>
       <div class="experience-card" onclick="goTo('scanner')">
         <div class="experience-icon">📦</div>
         <div class="experience-title">Escanea</div>
-        <div class="experience-desc">Lee la etiqueta y descubre origen</div>
+        <div class="experience-desc">Conoce el origen y la historia de tu café</div>
       </div>
       <div class="experience-card" onclick="goTo('calc')">
         <div class="experience-icon">⚖️</div>
         <div class="experience-title">Prepara</div>
-        <div class="experience-desc">Obtén la receta perfecta</div>
+        <div class="experience-desc">Encuentra la proporción ideal para tu método</div>
       </div>
-    </div>
-
-    <div class="education-section">
-      <div class="education-title">📚 Aprende a Entender tu Café</div>
-      <div class="education-desc">Domina los conceptos clave del café de especialidad sin necesidad de ser un experto.</div>
-      <div class="education-tags">
-        <span class="education-tag">Origen</span>
-        <span class="education-tag">Variedad</span>
-        <span class="education-tag">Proceso</span>
-        <span class="education-tag">Tueste</span>
-        <span class="education-tag">Notas</span>
-        <span class="education-tag">Preparación</span>
+      <div class="experience-card" onclick="goTo('tienda')">
+        <div class="experience-icon">🌱</div>
+        <div class="experience-title">Descubre</div>
+        <div class="experience-desc">Conoce nuevos cafés de especialidad</div>
       </div>
-    </div>
-
-    <div class="products-header">Cafés con Una Historia Que Contar</div>
-    <div class="prod-grid">
-      <div class="prod" onclick="goTo('chivito')">
-        <img class="prod-img" src="opt_chivito.png" alt="Chivito">
-        <div class="prod-info">
-          <div class="prod-name">Chivito de Páramo</div>
-          <div class="prod-origin">Cajamarca, Tolima · SCA 86</div>
-          <div class="prod-foot">
-            <div><div class="prod-price">$45.900</div><div class="prod-rating">★ 4.83</div></div>
-            <button class="add-btn" onclick="event.stopPropagation();comprar('chivito')">+ Agregar</button>
-          </div>
-        </div>
-      </div>
-      <div class="prod" onclick="goTo('quetzal')">
-        <img class="prod-img" src="opt_quetzal.png" alt="Quetzal">
-        <div class="prod-info">
-          <div class="prod-name">Café Quetzal</div>
-          <div class="prod-origin">454g · ★ 5.00</div>
-          <div class="prod-foot">
-            <div><div class="prod-price">$45.900</div><div class="prod-rating">★ 5.00</div></div>
-            <button class="add-btn" onclick="event.stopPropagation();comprar('quetzal')">+ Agregar</button>
-          </div>
-        </div>
-      </div>
-      <div class="prod" onclick="goTo('tienda')">
-        <img class="prod-img" src="opt_colibri.png" alt="Colibrí Amazilia">
-        <div class="prod-info">
-          <div class="prod-name">Colibrí Amazilia</div>
-          <div class="prod-origin">Café Honey · 454g</div>
-          <div class="prod-foot">
-            <div><div class="prod-price">$50.900</div><div class="prod-rating">★ 4.90</div></div>
-            <button class="add-btn" onclick="event.stopPropagation();comprar('colibri')">+ Agregar</button>
-          </div>
-        </div>
-      </div>
-      <div class="prod" onclick="goTo('tienda')">
-        <img class="prod-img" src="opt_trilogia.png" alt="Trilogía Huella">
-        <div class="prod-info">
-          <div class="prod-name">Trilogía Huella</div>
-          <div class="prod-origin">3 cafés · 454g · ★ 5.00</div>
-          <div class="prod-foot">
-            <div><div class="prod-price">$135.000</div><div class="prod-rating">★ 5.00</div></div>
-            <button class="add-btn" onclick="event.stopPropagation();comprar('trilogia')">+ Agregar</button>
-          </div>
-        </div>
+      <div class="experience-card" onclick="goTo('guia')">
+        <div class="experience-icon">📚</div>
+        <div class="experience-title">Guía</div>
+        <div class="experience-desc">Aprende más sobre el mundo del café</div>
       </div>
     </div>
   </div>
@@ -1271,9 +1211,10 @@
 <div class="screen active" id="sc-login">
   <div class="content" style="display:flex;flex-direction:column;justify-content:center;min-height:100vh;padding:20px">
     <div style="text-align:center;margin-bottom:30px">
-      <img src="logohuelladeorigen.png" alt="Huella de Origen" style="height: 70px; object-fit: contain; margin-bottom: 20px;">
-      <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#8B6F47;margin-bottom:8px">Bienvenido</div>
-      <div style="font-size:13px;color:#7A6050">Inicia sesión para continuar</div>
+      <img src="logohuelladeorigen.png" alt="Huella de Origen" style="height: 120px; object-fit: contain; margin-bottom: 20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#8B6F47;margin-bottom:12px">Huella de Origen</div>
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#D4A574;margin-bottom:16px;line-height:1.4">Descubre el café desde su origen</div>
+      <div style="font-size:13px;color:#5C3520;margin-bottom:20px;line-height:1.6;max-width:280px;margin-left:auto;margin-right:auto">Conoce, analiza y disfruta el café de especialidad de una forma diferente.</div>
     </div>
     
     <div style="background:#FEFDFB;border:0.5px solid #E8DDD0;border-radius:16px;padding:20px;margin-bottom:16px">
