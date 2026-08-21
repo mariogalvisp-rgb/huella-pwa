@@ -1,6 +1,6 @@
 // api/analizar.js - Edge Function para Vercel
-// Prompts profesionales de barista SCA con 15+ años de experiencia
-// Mide: TAMAÑO de partícula, UNIFORMIDAD %, COHERENCIA entre análisis
+// Prompts profesionales de barista SCA con 15+ anos de experiencia
+// Mide: TAMANO de particula, UNIFORMIDAD %, COHERENCIA entre analisis
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   // PROMPT SIMPLIFICADO PARA MOLIENDA - SIN CARACTERES ESPECIALES
   const promptMolienda = `BARISTA PROFESIONAL. ANALIZA CAFE MOLIDO.
 
-TAMAÑO PARTICULA (lo más importante):
+TAMANO PARTICULA (lo mas importante):
 - Fina: polvo fino como espresso
 - Media-Fina: arena fina
 - Media: arena media normal
@@ -29,7 +29,7 @@ TAMAÑO PARTICULA (lo más importante):
 - Gruesa: particulas grandes
 
 UNIFORMIDAD (0-100%):
-- 95-100: Todas igual tamaño
+- 95-100: Todas igual tamano
 - 80-94: Buena uniformidad
 - 60-79: Uniforme con variacion
 - 40-59: Bastante irregular
@@ -43,7 +43,7 @@ COLOR Y TOSTION:
 - Oscuro: #3D2415 Agtron 28
 
 CONFIANZA (basada en UNIFORMIDAD):
-- Alta: más de 80% uniformidad
+- Alta: mas de 80% uniformidad
 - Media: 60-80% uniformidad
 - Baja: menos 60% uniformidad
 
@@ -151,7 +151,6 @@ DEVUELVE SOLO JSON VALIDO:
     const data = await response.json();
     const text = data.content[0].text;
 
-    // Limpiar la respuesta y extraer JSON
     let jsonText = text.trim();
     
     if (jsonText.includes('```json')) {
