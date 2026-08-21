@@ -69,11 +69,18 @@
     .add-btn { padding: 5px 10px; background: #8B6F47; color: #FEFDFB; border: none; border-radius: 8px; font-size: 10px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
 
     /* TOOLS */
-    .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-    .tool-card { background: #FEFDFB; border: 1px solid #E8DDD0; border-radius: 14px; padding: 16px 10px; text-align: center; cursor: pointer; }
-    .tool-icon { font-size: 28px; margin-bottom: 6px; }
-    .tool-name { font-size: 12px; font-weight: 500; color: #1A0A04; margin-bottom: 2px; }
-    .tool-sub { font-size: 10px; color: #7A6050; }
+    .tool-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .tool-card { background: linear-gradient(135deg, #FEFDFB 0%, #F9F5F1 100%); border: 1.5px solid #D4A574; border-radius: 16px; padding: 20px 12px; text-align: center; cursor: pointer; transition: all 0.3s ease-out; box-shadow: 0 2px 8px rgba(44,24,16,0.08); }
+    .tool-card:hover { transform: translateY(-6px); border-color: #8B6F47; box-shadow: 0 6px 16px rgba(139,111,71,0.12); background: linear-gradient(135deg, #F5EDD6 0%, #FEFDFB 100%); }
+    .tool-card:active { transform: translateY(-2px); }
+    .tool-icon { font-size: 36px; margin-bottom: 10px; display: inline-block; transition: transform 0.3s ease-out; }
+    .tool-card:hover .tool-icon { transform: scale(1.1); }
+    .tool-name { font-size: 14px; font-weight: 600; color: #2C1810; margin-bottom: 4px; font-family: 'Playfair Display', serif; }
+    .tool-sub { font-size: 11px; color: #9B8B7E; font-weight: 400; }
+    .glos-item { background: #FEFDFB; border: 1px solid #E8DDD0; border-radius: 10px; padding: 14px 12px; margin-bottom: 10px; transition: all 0.2s ease-out; }
+    .glos-item:hover { border-color: #D4A574; box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06); }
+    .glos-term { font-weight: 600; color: #8B6F47; font-size: 13px; font-family: 'Playfair Display', serif; margin-bottom: 6px; }
+    .glos-desc { font-size: 12px; color: #5A4030; line-height: 1.5; }
 
     /* CARD */
     .card { background: #FEFDFB; border: 1px solid #E8DDD0; border-radius: 16px; overflow: hidden; margin-bottom: 12px; ; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
@@ -110,14 +117,14 @@
     .sec-btn { flex: 1; padding: 12px; background: transparent; color: #8B6F47; border: 1.5px solid #8B6F47; border-radius: 12px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s ease-out; }
 
     /* CAMERA */
-    .cam-opts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 16px; }
-    .cam-opt { background: #FEFDFB; border: 1.5px solid #E8DDD0; border-radius: 16px; padding: 20px 12px; text-align: center; cursor: pointer; transition: all 0.25s ease-out; transform: translateY(0); }
-    .cam-opt:active { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(139,111,71,0.15); }
-    .cam-opt:hover { border-color: #D4A574; background: #FEF9F3; }
-    .cam-opt.sel { border-color: #8B6F47; background: #FAF0E8; box-shadow: 0 4px 12px rgba(139,111,71,0.12); }
-    .cam-opt-icon { font-size: 32px; margin-bottom: 8px; display: block; }
-    .cam-opt-name { font-size: 13px; font-weight: 600; color: #1A0A04; margin-bottom: 4px; }
-    .cam-opt-sub { font-size: 11px; color: #7A6050; line-height: 1.4; }
+    .cam-opts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .cam-opt { background: #FEFDFB; border: 1px solid #E8DDD0; border-radius: 14px; padding: 18px 14px; text-align: center; cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 140px; }
+    .cam-opt:active { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(139,111,71,0.12); }
+    .cam-opt:hover { border-color: #D4A574; background: #FEF9F3; box-shadow: 0 2px 8px rgba(139,111,71,0.08); }
+    .cam-opt.sel { border-color: #8B6F47; background: #F5EDD6; box-shadow: 0 3px 10px rgba(139,111,71,0.1); }
+    .cam-opt-icon { font-size: 36px; margin-bottom: 10px; line-height: 1; }
+    .cam-opt-name { font-size: 13px; font-weight: 600; color: #2C1810; margin-bottom: 6px; letter-spacing: 0.3px; }
+    .cam-opt-sub { font-size: 11px; color: #8B7555; line-height: 1.3; }
     .cam-preview { width: 100%; border-radius: 14px; overflow: hidden; background: #1A0A04; position: relative; margin-bottom: 12px; display: none; }
     .cam-preview img { width: 100%; max-height: 260px; object-fit: cover; display: block; }
     .cam-preview video { width: 100%; max-height: 260px; object-fit: cover; display: block; }
@@ -378,6 +385,7 @@
     <button class="bnav-btn active"><span class="bnav-icon">🏠</span>Inicio</button>
     <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
     <button class="bnav-btn" onclick="goTo('tienda')"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
     <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
@@ -452,6 +460,7 @@
     <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
     <button class="bnav-btn active"><span class="bnav-icon">📷</span>Analizar</button>
     <button class="bnav-btn" onclick="goTo('tienda')"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
     <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
@@ -497,6 +506,7 @@
     <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
     <button class="bnav-btn active" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
     <button class="bnav-btn" onclick="goTo('tienda')"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
     <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
@@ -568,6 +578,7 @@
     <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
     <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
     <button class="bnav-btn active"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
     <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
@@ -639,6 +650,7 @@
     <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
     <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
     <button class="bnav-btn active"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
     <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
@@ -711,6 +723,7 @@
     <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
     <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
     <button class="bnav-btn active"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
     <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
@@ -765,6 +778,7 @@
     <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
     <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
     <button class="bnav-btn active"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
     <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
@@ -819,6 +833,7 @@
     <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
     <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
     <button class="bnav-btn active"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
     <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
@@ -843,9 +858,8 @@
       <a href="https://huelladeorigen.com/tienda/" target="_blank" style="font-size:12px;color:#8B6F47;text-decoration:none">Ver tienda completa →</a>
     </div>
     <div style="padding:16px;text-align:center">
-      <a href="https://wa.me/573117682407?text=Hola%20Huella%20de%20Origen%2C%20quisiera%20hacer%20un%20pedido" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#25D366;color:white;border-radius:12px;text-decoration:none;font-weight:600;font-family:'Montserrat',sans-serif;font-size:14px;box-shadow:0 2px 8px rgba(37,211,102,0.2)">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.425 0-2.834.356-4.06 1.031l-.291.164-.302-.05c-1.082-.188-2.113-.479-3.1-.944l.49 1.544c.47 1.505.934 2.585 1.956 3.497-1.023.789-1.924 1.906-2.503 3.222-.579 1.317-.744 2.741-.436 4.127.308 1.386 1.018 2.652 1.972 3.622.953.97 2.22 1.679 3.606 1.987 1.386.308 2.81.144 4.127-.436 1.317-.579 2.434-1.48 3.222-2.503.912 1.022 1.997 1.486 3.497 1.956l1.544.49c-.465-.987-.756-2.018-.944-3.1l-.05-.302.164-.291c.675-1.226 1.031-2.635 1.031-4.06 0-2.792-1.104-5.424-3.11-7.43-2.006-2.006-4.638-3.11-7.43-3.11Z"/></svg>
-        Hacer pedido por WhatsApp
+      <a href="https://wa.me/573117682407?text=Hola%20Huella%20de%20Origen%2C%20quisiera%20hacer%20un%20pedido" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;text-decoration:none;transition:all 0.3s ease-out" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="whatsapp-logo.png" alt="WhatsApp" style="width:52px;height:52px;filter:drop-shadow(0 3px 8px rgba(37,211,102,0.25))">
       </a>
     </div>
   </div>
@@ -853,6 +867,7 @@
     <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
     <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
     <button class="bnav-btn active"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
     <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
@@ -903,6 +918,7 @@
     <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
     <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
     <button class="bnav-btn" onclick="goTo('tienda')"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
     <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
@@ -934,6 +950,68 @@
 </div>
 
 <!-- PERFIL -->
+<div class="screen" id="sc-glosario">
+  <div class="content">
+    <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#2C1810;margin-bottom:6px">Términos técnicos</div>
+    <div style="font-size:12px;color:#8B7555;margin-bottom:16px">Entiende los conceptos básicos del análisis de café</div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="sec-t" style="color:#8B6F47">📊 AGTRON</div>
+      <div style="font-size:12px;color:#2C1810;line-height:1.6">Escala de color estándar para cafés tostados. Va de 95 (muy claro) a 25 (muy oscuro). Más importante: <strong>no es marca de calidad</strong>, solo describe el color del tostión.</div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="sec-t" style="color:#8B6F47">☕ SCA SCORE</div>
+      <div style="font-size:12px;color:#2C1810;line-height:1.6"><strong>Specialty Coffee Association</strong>. Puntuación de calidad: 86+ = café especialidad (premium), 80-85 = muy bueno, <80 = café comercial. Es como las "estrellas" del café.</div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="sec-t" style="color:#8B6F47">💧 EXTRACCIÓN</div>
+      <div style="font-size:12px;color:#2C1810;line-height:1.6">Qué tan bien el agua extrajo los sabores del café molido.<br>• <strong>Sub-extraído</strong> = agua muy rápido = café débil, acuoso<br>• <strong>Bien extraído</strong> = punto perfecto = café balanceado<br>• <strong>Sobre-extraído</strong> = agua muy lenta = café amargo</div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="sec-t" style="color:#8B6F47">🌐 V60 vs PRENSA</div>
+      <div style="font-size:12px;color:#2C1810;line-height:1.6"><strong>V60:</strong> Bebida clara, limpia, sabores florales. Filtro retiene aceites.<br><strong>Prensa Francesa:</strong> Bebida densa, cuerpo completo, sabor robusto. Sin filtro = más aceite.</div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="sec-t" style="color:#8B6F47">📏 MOLIENDA</div>
+      <div style="font-size:12px;color:#2C1810;line-height:1.6">Tamaño de las partículas del café molido.<br>• <strong>Fina</strong> = polvo (Espresso)<br>• <strong>Media</strong> = arena (V60, Chemex)<br>• <strong>Gruesa</strong> = granos visibles (Prensa)<br><strong>Regla:</strong> Molienda fina = extracción más rápida</div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="sec-t" style="color:#8B6F47">🔥 TOSTIÓN</div>
+      <div style="font-size:12px;color:#2C1810;line-height:1.6"><strong>Claro:</strong> Sabores ácidos, florales, frutas<br><strong>Medio:</strong> Balance acido-amargo, chocolate, nueces<br><strong>Oscuro:</strong> Menos acidez, más amargo, tostación detectada</div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="sec-t" style="color:#8B6F47">🎯 TRAZABILIDAD</div>
+      <div style="font-size:12px;color:#2C1810;line-height:1.6">Información sobre dónde se cultivó el café.<br>• <strong>Completa:</strong> Finca, región, altitud, variedad específica<br>• <strong>Incompleta:</strong> Solo país (ej: "Colombia" genérico)<br>Cafés especiales siempre tienen trazabilidad completa.</div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="sec-t" style="color:#8B6F47">🫘 VARIEDAD</div>
+      <div style="font-size:12px;color:#2C1810;line-height:1.6">Tipo genético del grano (como la "raza" del café).<br>• <strong>Bourbon</strong> = sabores dulces, rondy<br>• <strong>Geisha</strong> = exótica, florales intensas, premium<br>• <strong>Typica</strong> = clásica, compleja, equilibrada</div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="sec-t" style="color:#8B6F47">⚙️ UNIFORMIDAD</div>
+      <div style="font-size:12px;color:#2C1810;line-height:1.6">Porcentaje (%) de partículas del mismo tamaño.<br>• <strong>85-100%</strong> = excelente, extracción parejo<br>• <strong>60-84%</strong> = bueno, extraen bien<br>• <strong><60%</strong> = irregular, algunos granos sobre/sub-extraídos</div>
+    </div>
+
+    <div style="text-align:center;padding:16px;background:#F5EDD6;border-radius:10px;margin-bottom:12px">
+      <div style="font-size:11px;color:#8B6F47">💡 <strong>Consejo:</strong> Usa estos términos para entender mejor tus análisis</div>
+    </div>
+  </div>
+  <div class="bnav">
+    <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
+    <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
+    <button class="bnav-btn" onclick="goTo('tienda')"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn active"><span class="bnav-icon">ℹ️</span>Guía</button>
+  </div>
+</div>
+
 <div class="screen" id="sc-perfil">
   <div class="content">
     <div class="prof-hero">
@@ -965,12 +1043,13 @@
         </div>
       </div>
       <div style="padding:12px 0;margin-top:12px;border-top:0.5px solid #E8DDD0">
-        <button onclick="resetearEstadisticas()" style="width:100%;padding:12px;background:#F5EDD6;color:#8B5000;border:1px solid #D4A574;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;cursor:pointer;margin-bottom:10px">🔄 Resetear Estadísticas</button>
-        <a href="https://wa.me/573117682407?text=Hola%20Huella%20de%20Origen%2C%20tengo%20una%20pregunta" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px;background:#25D366;color:white;border-radius:10px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;margin-bottom:10px;box-shadow:0 2px 8px rgba(37,211,102,0.2)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.425 0-2.834.356-4.06 1.031l-.291.164-.302-.05c-1.082-.188-2.113-.479-3.1-.944l.49 1.544c.47 1.505.934 2.585 1.956 3.497-1.023.789-1.924 1.906-2.503 3.222-.579 1.317-.744 2.741-.436 4.127.308 1.386 1.018 2.652 1.972 3.622.953.97 2.22 1.679 3.606 1.987 1.386.308 2.81.144 4.127-.436 1.317-.579 2.434-1.48 3.222-2.503.912 1.022 1.997 1.486 3.497 1.956l1.544.49c-.465-.987-.756-2.018-.944-3.1l-.05-.302.164-.291c.675-1.226 1.031-2.635 1.031-4.06 0-2.792-1.104-5.424-3.11-7.43-2.006-2.006-4.638-3.11-7.43-3.11Z"/></svg>
-          WhatsApp
-        </a>
-        <button onclick="cerrarSesion()" style="width:100%;padding:12px;background:#C85C54;color:white;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;cursor:pointer">Cerrar sesión</button>
+        <button onclick="resetearEstadisticas()" style="width:100%;padding:12px;background:#F5EDD6;color:#8B5000;border:1px solid #D4A574;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;cursor:pointer;margin-bottom:14px">🔄 Resetear Estadísticas</button>
+        <button onclick="cerrarSesion()" style="width:100%;padding:12px;background:#C85C54;color:white;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;cursor:pointer;margin-bottom:14px">Cerrar sesión</button>
+        <div style="display:flex;justify-content:center;align-items:center;margin-bottom:8px">
+          <a href="https://wa.me/573117682407?text=Hola%20Huella%20de%20Origen%2C%20tengo%20una%20pregunta" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;text-decoration:none;transition:all 0.3s ease-out" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <img src="whatsapp-logo.png" alt="WhatsApp" style="width:52px;height:52px;filter:drop-shadow(0 3px 8px rgba(37,211,102,0.25))">
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -978,11 +1057,165 @@
     <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
     <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
     <button class="bnav-btn" onclick="goTo('tienda')"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
     <button class="bnav-btn active"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
 
+<!-- GUIA / TERMINOS DE CAFE PROFESIONAL -->
+<div class="screen" id="sc-guia">
+  <div class="content">
+    <div style="background: linear-gradient(135deg, #8B6F47, #6B5344); color: #F5EDD6; padding: 20px; border-radius: 12px; margin-bottom: 16px; text-align: center;">
+      <div style="font-size: 24px; font-family: 'Playfair Display', serif; font-weight: 700; margin-bottom: 4px;">☕ Guía de Café</div>
+      <div style="font-size: 12px; opacity: 0.9;">Términos técnicos y sabores explicados</div>
+    </div>
+
+    <!-- SECCIÓN 1: CALIDAD -->
+    <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#8B6F47;background:#E8DCC8;padding:12px;margin:16px 0 10px;border-radius:8px;border-left:4px solid #2C1810">⭐ Calidad del Café</div>
+    
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">🏆 SCA SCORE</div>
+      <div style="font-size:12px;color:#555;line-height:1.5">Puntuación de calidad internacional (0-100). Catadores certificados evalúan aroma, sabor, cuerpo, equilibrio y limpieza.</div>
+      <div style="background:#FEF4E8;border:1px solid #D4C5B0;padding:8px;margin-top:8px;border-radius:4px;font-size:11px"><strong>86-100:</strong> Especialidad Premium ⭐ | <strong>80-85:</strong> Especialidad | <strong>&lt;80:</strong> Comercial</div>
+    </div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">🌍 TRAZABILIDAD</div>
+      <div style="font-size:12px;color:#555;line-height:1.5">Información completa del origen: finca específica, región, altitud, variedad, proceso. Cafés especiales siempre tienen trazabilidad completa.</div>
+    </div>
+
+    <!-- SECCIÓN 2: ORIGEN -->
+    <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#8B6F47;background:#E8DCC8;padding:12px;margin:16px 0 10px;border-radius:8px;border-left:4px solid #2C1810">🌱 Origen y Variedad</div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">🌍 TERROIR</div>
+      <div style="font-size:12px;color:#555;line-height:1.5">Influencia del lugar: altitud, clima, suelo. Café de montaña alta (1.800-2.000m) = acidez viva, sabores limpios. Altitud media (1.200-1.500m) = cuerpo completo, menos acidez.</div>
+    </div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">🫘 VARIEDAD</div>
+      <div style="font-size:12px;color:#555;line-height:1.5"><strong>Bourbon:</strong> dulces, caramelo. <strong>Typica:</strong> compleja, equilibrada. <strong>Castillo:</strong> chocolate-caramelo. <strong>Geisha:</strong> florales intensas.</div>
+    </div>
+
+    <!-- SECCIÓN 3: PROCESAMIENTO -->
+    <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#8B6F47;background:#E8DCC8;padding:12px;margin:16px 0 10px;border-radius:8px;border-left:4px solid #2C1810">🔄 Procesamiento</div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">🔥 TOSTIÓN</div>
+      <div style="font-size:12px;color:#555;line-height:1.5">Proceso de calentar el grano crudo para desarrollar sabor.</div>
+      <div style="background:#FEF4E8;border:1px solid #D4C5B0;padding:8px;margin-top:8px;border-radius:4px;font-size:11px"><strong>Clara:</strong> Acidez viva, frutas, flores | <strong>Media:</strong> Balance, chocolate, caramelo | <strong>Oscura:</strong> Menos acidez, más amargo</div>
+    </div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">🫗 PROCESO DE BENEFICIO</div>
+      <div style="font-size:12px;color:#555;line-height:1.5"><strong>Lavado:</strong> sabores limpios, florales. <strong>Natural:</strong> dulce, frutal, cuerpo completo. <strong>Honey:</strong> punto medio, equilibrado.</div>
+    </div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">📊 AGTRON</div>
+      <div style="font-size:12px;color:#555;line-height:1.5">Escala de color (95 = claro, 25 = oscuro). <strong>Solo describe color, NO calidad.</strong> Un Agtron 60 no es "mejor" que 75.</div>
+    </div>
+
+    <!-- SECCIÓN 4: PREPARACIÓN -->
+    <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#8B6F47;background:#E8DCC8;padding:12px;margin:16px 0 10px;border-radius:8px;border-left:4px solid #2C1810">☕ Moliendo y Extrayendo</div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">📏 MOLIENDA</div>
+      <div style="font-size:12px;color:#555;line-height:1.5"><strong>Fina</strong> (polvo) = Espresso. <strong>Media</strong> (arena) = V60, Chemex. <strong>Gruesa</strong> (granos) = Prensa Francesa. Molienda fina = extracción rápida.</div>
+    </div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">💧 EXTRACCIÓN</div>
+      <div style="font-size:12px;color:#555;line-height:1.5"><strong>Sub-extraído:</strong> café débil, acuoso. <strong>Bien extraído:</strong> punto perfecto. <strong>Sobre-extraído:</strong> amargo, quemado.</div>
+    </div>
+
+    <!-- SECCIÓN 5: SABOR -->
+    <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#8B6F47;background:#E8DCC8;padding:12px;margin:16px 0 10px;border-radius:8px;border-left:4px solid #2C1810">👅 El Sabor en Tu Taza</div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">⚡ ACIDEZ</div>
+      <div style="font-size:12px;color:#555;line-height:1.5"><strong>NO es amargo.</strong> Es el brillo, frescura y vivacidad. Acidez alta = cítricos, frutales, florales (deseable). Acidez baja = suave, redondeado.</div>
+    </div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">💪 CUERPO</div>
+      <div style="font-size:12px;color:#555;line-height:1.5"><strong>Ligero:</strong> casi agua (V60). <strong>Medio:</strong> balance (Espresso). <strong>Completo:</strong> denso, cremoso (Prensa).</div>
+    </div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">🎨 NOTAS DE SABOR</div>
+      <div style="font-size:12px;color:#555;line-height:1.5"><strong>Frutas:</strong> naranja, frambuesa, mango. <strong>Flores:</strong> jazmín, rosa. <strong>Cacao, Frutos secos, Caramelo, Especias.</strong></div>
+    </div>
+
+    <div style="background:#FEFDFB;border-left:4px solid #8B6F47;padding:12px;margin:8px 0;border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-weight:600;color:#2C1810;margin-bottom:6px">⚖️ EQUILIBRIO</div>
+      <div style="font-size:12px;color:#555;line-height:1.5">Acidez + cuerpo + dulzura en armonía. Un café balanceado nada domina, todo conversa. Cafés 86+ SCA siempre equilibrados.</div>
+    </div>
+
+    <!-- NUESTROS CAFÉS -->
+    <div style="background: linear-gradient(135deg, #8B6F47, #6B5344); color: #F5EDD6; padding: 14px; border-radius: 8px; margin: 20px 0;">
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2em; margin-bottom: 12px; text-align: center;">Nuestros Cafés</h3>
+      
+      <div style="background: rgba(255,255,255,0.1); padding: 10px; margin: 8px 0; border-radius: 6px; font-size: 12px;">
+        <strong style="color: #C9A876;">🫘 CHIVITO</strong>
+        <br><small>Chocolate oscuro, naranja, almendra | Lavado | 86 SCA</small>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.1); padding: 10px; margin: 8px 0; border-radius: 6px; font-size: 12px;">
+        <strong style="color: #C9A876;">🫘 QUETZAL</strong>
+        <br><small>Cítricos, caramelo, floral | Variedad: Castillo | Lavado | 86 SCA</small>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.1); padding: 10px; margin: 8px 0; border-radius: 6px; font-size: 12px;">
+        <strong style="color: #C9A876;">🫘 COLIBRÍ AMAZILIA</strong>
+        <br><small>Miel, frutas tropicales, chocolate | Honey | 86 SCA</small>
+      </div>
+    </div>
+
+  </div>
+  <div class="bnav">
+    <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
+    <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
+    <button class="bnav-btn" onclick="goTo('tienda')"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn active"><span class="bnav-icon">📚</span>Guía</button>
+    <button class="bnav-btn" onclick="goTo('guia')"><span class="bnav-icon">📚</span>Guía</button>
+    <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
+  </div>
+</div>
+
 <script>
+const GLOSARIO = {
+  'Agtron': 'Escala de color para café tostado (0-100). 95=muy claro, 55=medio, 25=muy oscuro. Usada internacionalmente para medir tostión.',
+  'SCA': 'Specialty Coffee Association. Certificación de calidad para cafés que puntuean 80+ en una cata oficial. Es el estándar de especialidad.',
+  'Extraccion': 'Proceso de disolver los sabores del café en agua. Bien extraído (18-22% sólidos), Sub-extraído (<18%), Sobre-extraído (>22%).',
+  'Sobre extraccion': 'Extracción excesiva (>22% sólidos). Resultado: bebida amarga, astringente, quemada. Causas: agua muy caliente, tiempo excesivo, molienda muy fina.',
+  'Molienda': 'Tamaño de las partículas de café molido. Tipos: Fina (Espresso), Media-Fina (V60), Media (Chemex), Media-Gruesa (Prensa), Gruesa (Cupping).',
+  'Tipo de molienda': 'Categoría de tamaño de partícula según método de preparación. Cada método requiere tamaño específico para óptima extracción.',
+  'Uniformidad': 'Porcentaje (0-100%) que mide si todas las partículas de molienda tienen similar tamaño. >85% = excelente, <60% = irregular.',
+  'Tostion': 'Nivel de calor aplicado al café verde. Claro (Agtron 95), Medio-Claro (70), Medio (55), Medio-Oscuro (42), Oscuro (28).',
+  'Tostion Fuerte': 'Nivel de tostión Oscuro-muy Oscuro (Agtron 25-35). Sabores intensos, chocolatosos, amargos. Apto para Espresso, Moka, Prensa.',
+  'Fecha de tueste': 'Día/mes cuando se tostó el café. Café fresco se consume 1-3 semanas post-tueste. Después pierde aromas volátiles.',
+  'Confianza': 'Nivel de certeza del análisis. Alta: datos claros/uniformes, Media: algunos detalles ambiguos, Baja: información muy irregular.',
+  'Cata': 'Prueba profesional de café donde se evalúan sabor, cuerpo, acidez y balance. Realizada por catadores certificados SCA.',
+  'Variedad': 'Tipo genético del grano de café. Ej: Bourbon, Geisha, Typica, Castillo, Caturra. Cada variedad tiene sabores específicos.',
+  'Proceso': 'Método de beneficio post-cosecha. Lavado (frutal), Natural (dulce), Honey (balanceado), Fermentado (complejo).',
+  'Trazabilidad': 'Información verificable: finca origen, región, altitud, variedad, proceso, catador, lote. Propia de cafés de especialidad.',
+  'Bloom': 'Primera fase de extracción (30-45 seg) donde se moja el café sin verter más agua. Desgasifica y mejora la extracción.',
+  'Ratio': 'Proporción café:agua. Ej: 1:15 (1g café : 15g agua). Más agua = bebida más diluida, menos agua = más concentrada.',
+  'Especialidad': 'Café de alta calidad (SCA 86+) con trazabilidad completa, evaluado por catadores certificados. Origen único o microlotes.',
+  'Comercial': 'Café de masa sin trazabilidad verificable, procesamiento estándar, sin certificación SCA. Precio y sabor accesibles.',
+  'Transparencia': 'Claridad visual de la bebida. Transparente (V60), Opaca (Prensa Francesa). Indica método de preparación.',
+  'Acidez': 'Sabor refrescante y brillante del café. NO es pH. Cafés de montaña alta tienen más acidez compleja y agradable.',
+  'Cuerpo': 'Sensación de peso/viscosidad en la boca. Claro (V60), Medio (Chemex), Completo (Prensa). Depende de extracción y molienda.',
+  'Sabor': 'Notas detectadas en la cata. Ej: Chocolate, Frutas, Caramelo, Nueces, Florales. Cada café tiene perfil sensorial único.',
+  'Particula': 'Tamaño individual de café molido. Uniformidad de particulas mejora extraccion y sabor.',
+  'Control del agua': 'Manejo de temperatura (88-94°C), mineralidad (mg/L), pH (6.5-7.5), pureza. Agua correcta optimiza extracción.',
+  'Aroma': 'Fragancias totales percibidas del café: secas (grano molido) y mojadas (tras verter agua caliente). Indica calidad y frescura.',
+  'Fragancia': 'Aromas volátiles específicos detectados durante la cata. Ej: floral, frutal, especiado, tostado. Depende de origen y tostión.',
+  'Dulzor': 'Notas de caramelo, miel, azúcares naturales percibidas en cata. Indica extracción balanceada y origen de calidad.',
+  'Torrefacto': 'Proceso obsoleto que agrega azúcar (10-15%) durante tostión. Produce sabor quemado, falsa dulzura. NO es especialidad.'
+};
+
 const METODOS = {
   v60:{n:'V60',i:'☕',t:'92–94°C',ti:'3–4 min',m:'Media',b:'30s',r:15,ml:200,steps:['Calienta el filtro y descarta el agua','Agrega el café molido y nivela','Bloom: vierte 30ml y espera 30 segundos','Vierte en espiral hasta completar','Tiempo total: 3–4 minutos']},
   che:{n:'Chemex',i:'🧪',t:'93–96°C',ti:'4–5 min',m:'Media-Gruesa',b:'45s',r:16,ml:200,steps:['Enjuaga el filtro grueso con agua caliente','Agrega el café molido','Bloom 45s con 3x el peso del café','Vierte en pulsos lentos y circulares','4–5 minutos total']},
@@ -1067,6 +1300,39 @@ function resetearEstadisticas() {
 function cerrarSesion() {
   localStorage.removeItem('usuarioHuella');
   goTo('login');
+}
+
+// GLOSARIO - Renderizar y buscar términos
+function cargarGlosario() {
+  const container = document.getElementById('glos-list');
+  const terminos = Object.entries(GLOSARIO).map(([term, desc]) => 
+    `<div class="glos-item">
+      <div class="glos-term">${term}</div>
+      <div class="glos-desc">${desc}</div>
+    </div>`
+  ).join('');
+  container.innerHTML = terminos;
+}
+
+function buscarGlosario() {
+  const query = document.getElementById('glos-search').value.toLowerCase();
+  const container = document.getElementById('glos-list');
+  
+  if (!query) {
+    cargarGlosario();
+    return;
+  }
+  
+  const resultados = Object.entries(GLOSARIO)
+    .filter(([term, desc]) => term.toLowerCase().includes(query) || desc.toLowerCase().includes(query))
+    .map(([term, desc]) => 
+      `<div class="glos-item">
+        <div class="glos-term">${term}</div>
+        <div class="glos-desc">${desc}</div>
+      </div>`
+    ).join('');
+  
+  container.innerHTML = resultados || '<div style="text-align:center;padding:20px;color:#999">No se encontraron términos</div>';
 }
 
 function selOpt(opt) {
@@ -1261,7 +1527,7 @@ async function escanearEtiqueta() {
     document.getElementById('load-scan').classList.remove('show');
     document.getElementById('scan-result').innerHTML = renderEtiqueta(d);
     document.getElementById('scan-result').classList.add('show');
-    incrementarProbados(); // Etiqueta = Probados
+    incrementarProbados(); // Escanear etiqueta = Probados
   } catch(e) {
     clearInterval(scanTimer);
     document.getElementById('load-scan').classList.remove('show');
@@ -1293,7 +1559,7 @@ function renderTaza(d) {
   const notasBarista = d.notas_barista ? `<div style="background:#E8F5E9;padding:12px;border-radius:8px;font-size:11px;color:#1B5E20;border-left:4px solid #2E7D32;margin-bottom:12px"><strong>📝 Nota de Barista:</strong> ${d.notas_barista}</div>` : '';
   const metodoInfo = d.metodo_detectado ? `<div style="padding:8px 12px;background:#F5EDD6;border-radius:8px;margin-bottom:12px;font-size:11px;color:#5A4030"><strong>Método detectado:</strong> ${d.metodo_detectado}</div>` : '';
   const transparenciaInfo = d.transparencia ? `<div style="padding:8px 12px;background:#E3F2FD;border-radius:8px;margin-bottom:12px;font-size:11px;color:#1565C0"><strong>Transparencia:</strong> ${d.transparencia}</div>` : '';
-  return `<div class="res-hero"><div class="res-title">${d.bebida||'Café'} · ${d.extraccion||'Análisis'}</div><div class="res-sub">${d.color||''} · Tueste ${d.tueste||'Medio'} · ${d.concentracion||''}</div><div class="res-badges"><span class="badge bb">Confianza: ${d.confianza||'Media'}</span>${d.puntaje_visual||d.puntaje?`<span class="badge bo">Visual ${d.puntaje_visual||d.puntaje}/100</span>`:''}</div></div>${metodoInfo}${transparenciaInfo}<div class="swatch-row"><div class="swatch" style="background:${d.hex||'#6B4423'}"></div><div class="swatch-info"><div class="swatch-lbl">Color detectado</div><div class="swatch-val">${d.color||'Marrón'}</div><div class="swatch-hex">${d.hex||'#6B4423'} · Agtron ~${d.agtron||'N/D'}</div></div><div><div class="score-big">${d.puntaje_visual||d.puntaje||'—'}</div><div class="score-lbl">Visual /100</div></div></div>${notasBarista}<div class="scale-wrap"><div class="scale-lbl">Escala de extracción</div><div class="scale-bar" style="background:linear-gradient(90deg,#F0D5A0,#C8955A,#7B4A1A,#3D1F0A,#1A0804);position:relative"><div class="scale-arrow" style="left:${pos}%">▼</div></div><div class="scale-labels"><span>Sub-extraído</span><span>✓ Bien</span><span>Sobre-extraído</span></div></div><div class="sec"><div class="sec-t">Diagnóstico visual</div><div class="diag-list">${diag}</div></div><div class="sec"><div class="sec-t">Sabores probables</div><div class="ftags">${sabores}</div></div><div class="sec"><div class="sec-t">Ajustes recomendados</div><div class="ajustes">${ajustes}</div></div>`;
+  return `<div class="res-hero"><div class="res-title">${d.bebida||'Café'} · ${d.extraccion||'Análisis'}</div><div class="res-sub">${d.color||''} · Tueste ${d.tueste||'Medio'} · ${d.concentracion||''}</div><div class="res-badges"><span class="badge bb">Confianza: ${d.confianza||'Media'}</span>${d.puntaje_visual||d.puntaje?`<span class="badge bo">Visual ${d.puntaje_visual||d.puntaje}/100</span>`:''}</div></div>${metodoInfo}${transparenciaInfo}<div class="swatch-row"><div class="swatch" style="background:${d.hex||'#6B4423'}"></div><div class="swatch-info"><div class="swatch-lbl">Color detectado</div><div class="swatch-val">${d.color||'Marrón'}</div><div class="swatch-hex">Agtron ~${d.agtron||'N/D'}</div></div><div><div class="score-big">${d.puntaje_visual||d.puntaje||'—'}</div><div class="score-lbl">Visual /100</div></div></div>${notasBarista}<div class="scale-wrap"><div class="scale-lbl">Escala de extracción</div><div class="scale-bar" style="background:linear-gradient(90deg,#F0D5A0,#C8955A,#7B4A1A,#3D1F0A,#1A0804);position:relative"><div class="scale-arrow" style="left:${pos}%">▼</div></div><div class="scale-labels"><span>Sub-extraído</span><span>✓ Bien</span><span>Sobre-extraído</span></div></div><div class="sec"><div class="sec-t">Diagnóstico visual</div><div class="diag-list">${diag}</div></div><div class="sec"><div class="sec-t">Sabores probables</div><div class="ftags">${sabores}</div></div><div class="sec"><div class="sec-t">Ajustes recomendados</div><div class="ajustes">${ajustes}</div></div>`;
 }
 
 function renderScan(d){if(!d||typeof d!='object')return '<div style="padding:14px;color:#8B0000">Error</div>';const cell=(l,v)=>v?`<div class="cell"><div class="cell-l">${l}</div><div class="cell-v">${v}</div></div>`:'';const origen=d.origen||'Colombia';const variedad=d.variedad||'Arábica';const proceso=d.proceso||'Lavado';const altura=d.altura||'1800-2100 msnm';const tostion=d.tostion||'Medio';const peso=d.peso||'454g';const notas=(d.notas||['Chocolate','Frutas','Caramelo']).map(n=>`<span class="ftag">${n}</span>`).join('');const certs=(d.certs||['Especialidad SCA','Trazabilidad completa']).map(c=>`<span class="badge bg" style="font-size:11px;padding:4px 10px">${c}</span>`).join('');const noEnc=(d.no_encontrados||[]).join(', ');return `<div class="res-hero"><div class="res-title">${d.nombre||'Café Huella de Origen'}</div><div class="res-sub">${d.marca||'Productor Colombiano'}</div><div class="res-badges"><span class="badge bg">Datos: ${d.datos||'Completo'}</span>${d.sca?`<span class="badge bo">SCA ${d.sca}</span>`:'<span class="badge bo">SCA 86+</span>'}</div></div><div class="src-ban">📷 Extraído de la etiqueta del empaque</div><div class="grid3">${cell('Origen',origen)}${cell('Variedad',variedad)}${cell('Proceso',proceso)}${cell('Altura',altura)}${cell('Tostión',tostion)}${cell('Peso',peso)}</div><div class="sec"><div class="sec-t">Notas de cata</div><div class="ftags">${notas}</div></div><div class="sec"><div class="sec-t">Certificaciones</div><div class="badges">${certs}</div></div>${d.web?`<div class="sec"><div class="sec-t">Información comercial</div><div class="info-list"><div class="info-item"><span class="info-lbl">Web:</span><a href="${d.web}" target="_blank" style="color:#8B6F47;font-size:12px">${d.web}</a></div>${d.redes?`<div class="info-item"><span class="info-lbl">Redes:</span><span style="font-size:12px">${d.redes}</span></div>`:''}</div></div>`:''}${noEnc?`<div class="sec"><div class="sec-t" style="color:#8B5000">⚠ No visible en etiqueta</div><div style="font-size:11px;color:#5A4030">${noEnc}</div></div>`:''}`;
@@ -1393,6 +1659,11 @@ function comprar(prod) {
 calcular();
 document.getElementById('sl-t').addEventListener('input', calcular);
 document.getElementById('q').addEventListener('keydown', e => { if(e.key==='Enter') buscar(); });
+
+// Glosario - Cargar y buscar
+document.getElementById('glos-search').addEventListener('input', buscarGlosario);
+// Cargar glosario inicial
+cargarGlosario();
 
 // PWA Install
 if ('serviceWorker' in navigator) {
