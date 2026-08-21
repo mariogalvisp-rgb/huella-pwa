@@ -1220,157 +1220,26 @@ async function escanearEtiqueta() {
 }
 
 function renderMolienda(d) {
-  // Validar que d existe
-  if (!d || typeof d !== 'object') {
-    return `<div style="padding:14px;color:#8B0000;font-size:13px">Error: Respuesta inválida del servidor</div>`;
-  }
-
-  // Mapear molienda a posición
-  const moliendaMap = {'Gruesa':8,'Media-Gruesa':22,'Media':38,'Media-Fina':55,'Fina':72,'Espresso':85};
-  const pos = moliendaMap[d.molienda_tipo] || 40;
-
-  // Mapear tueste a posición
+  if (!d || typeof d !== 'object') return '<div style="padding:14px;color:#8B0000">Error</div>';
   const tuesteMap = {'Claro':8,'Medio':28,'Medio-Alto':52,'Oscuro':74,'Extra Oscuro':91};
   const tpos = tuesteMap[d.tueste_nivel] || 40;
-
-  // Renderizar métodos
-  const metodos = (d.metodos || []).map(x => {
-    if (!x || !x.n) return '';
-    const cls = x.c === 'ideal' ? 'c-ideal' : x.c === 'ok' ? 'c-ok' : 'c-no';
-    const lbl = x.c === 'ideal' ? '✓ Ideal' : x.c === 'ok' ? '~ Compatible' : '✗ No recomendado';
-    return `<div class="met-item"><div class="met-icon">${x.i || '•'}</div><div><div class="met-name">${x.n}</div><div class="met-desc">${x.r || ''}</div><span class="compat ${cls}">${lbl}</span></div></div>`;
-  }).join('');
-
-  // Renderizar sabores
-  const sabores = (d.sabores || []).map(s => `<span class="ftag">${s}</span>`).join('');
-
-  // Renderizar tips
-  const tips = (d.tips || []).map(t => `<div class="ajuste"><div class="ajuste-dot"></div><span>${t}</span></div>`).join('');
-
-  return `<div class="res-hero">
-    <div class="res-title">${d.molienda_tipo || 'Molienda'} · Tueste ${d.tueste_nivel || 'Medio'}</div>
-    <div class="res-sub">${d.molienda_desc || ''}</div>
-    <div class="res-badges">
-      <span class="badge bb">Confianza: ${d.confianza || 'Media'}</span>
-      ${d.agtron ? `<span class="badge bo">Agtron ~${d.agtron}</span>` : ''}
-    </div>
-  </div>
-  <div class="scale-wrap">
-    <div class="scale-lbl">Escala de tueste</div>
-    <div class="scale-bar" style="background:linear-gradient(90deg,#C8A070,#A07845,#7B5030,#4A2010,#1A0804);position:relative">
-      <div class="scale-arrow" style="left:${tpos}%">▼</div>
-    </div>
-    <div class="scale-labels"><span>Claro</span><span>Medio</span><span>M-Alto</span><span>Oscuro</span></div>
-  </div>
-  ${metodos ? `<div class="sec"><div class="sec-t">Compatibilidad con métodos</div><div class="met-list">${metodos}</div></div>` : ''}
-  ${sabores ? `<div class="sec"><div class="sec-t">Sabores esperados</div><div class="ftags">${sabores}</div></div>` : ''}
-  ${tips ? `<div class="sec"><div class="sec-t">Tips de preparación</div><div class="ajustes">${tips}</div></div>` : ''}`;
+  const metodos = (d.metodos||[]).map(x => x ? `<div class="met-item"><div class="met-icon">${x.i||'•'}</div><div><div class="met-name">${x.n||''}</div><div class="met-desc">${x.r||''}</div><span class="compat">${x.c=='ideal'?'✓ Ideal':x.c=='ok'?'~ Compatible':'✗ No'}</span></div></div>` : '').join('');
+  const sabores = (d.sabores||[]).map(s => `<span class="ftag">${s}</span>`).join('');
+  const tips = (d.tips||[]).map(t => `<div class="ajuste"><div class="ajuste-dot"></div><span>${t}</span></div>`).join('');
+  return `<div class="res-hero"><div class="res-title">${d.molienda_tipo||'Molienda'} · Tueste ${d.tueste_nivel||'Medio'}</div><div class="res-sub">${d.molienda_desc||''}</div><div class="res-badges"><span class="badge bb">Confianza: ${d.confianza||'Media'}</span>${d.agtron?`<span class="badge bo">Agtron ~${d.agtron}</span>`:''}</div></div><div class="scale-wrap"><div class="scale-lbl">Escala de tueste</div><div class="scale-bar" style="background:linear-gradient(90deg,#C8A070,#A07845,#7B5030,#4A2010,#1A0804);position:relative"><div class="scale-arrow" style="left:${tpos}%">▼</div></div><div class="scale-labels"><span>Claro</span><span>Medio</span><span>M-Alto</span><span>Oscuro</span></div></div>${metodos?`<div class="sec"><div class="sec-t">Métodos</div><div class="met-list">${metodos}</div></div>`:''}${sabores?`<div class="sec"><div class="sec-t">Sabores</div><div class="ftags">${sabores}</div></div>`:''}${tips?`<div class="sec"><div class="sec-t">Tips</div><div class="ajustes">${tips}</div></div>`:''}`;
 }
 
 function renderTaza(d) {
-  // Validar que d existe y es un objeto
-  if (!d || typeof d !== 'object') {
-    return `<div style="padding:14px;color:#8B0000;font-size:13px">Error: Respuesta inválida del servidor</div>`;
-  }
-
-  // Mapear extracción a posición en la escala
-  const extraccionMap = {
-    'Sub-extraído': 12,
-    'Bien extraído': 50,
-    'Óptimo': 50,
-    'Bien': 50,
-    'Sobre-extraído': 88
-  };
+  if (!d || typeof d !== 'object') return '<div style="padding:14px;color:#8B0000">Error</div>';
+  const extraccionMap = {'Sub-extraído': 12, 'Bien extraído': 50, 'Óptimo': 50, 'Bien': 50, 'Sobre-extraído': 88};
   const pos = extraccionMap[d.extraccion] || 50;
-
-  // Renderizar diagnóstico
-  const diag = (d.diagnostico || []).map(x => {
-    if (!x || !x.n) return '';
-    const cls = x.e === 'bien' ? 'db-bien' : x.e === 'alerta' ? 'db-alerta' : 'db-mal';
-    const lbl = x.e === 'bien' ? '✓ Bien' : x.e === 'alerta' ? '⚠ Revisar' : '✗ Problema';
-    return `<div class="diag-item"><div class="diag-icon">${x.i || '•'}</div><div><div class="diag-name">${x.n}</div><div class="diag-desc">${x.d || ''}</div><span class="diag-badge ${cls}">${lbl}</span></div></div>`;
-  }).join('');
-
-  // Renderizar sabores
-  const sabores = (d.sabores || []).map(s => `<span class="ftag">${s}</span>`).join('');
-
-  // Renderizar ajustes
-  const ajustes = (d.ajustes || []).map(a => `<div class="ajuste"><div class="ajuste-dot"></div><span>${a}</span></div>`).join('');
-
-  // Renderizar resultado
-  return `<div class="res-hero">
-    <div class="res-title">${d.bebida || 'Café'} · ${d.extraccion || 'Análisis'}</div>
-    <div class="res-sub">${d.color || ''} · Tueste ${d.tueste || 'Medio'} · ${d.concentracion || ''}</div>
-    <div class="res-badges">
-      <span class="badge bb">Confianza: ${d.confianza || 'Media'}</span>
-      ${d.puntaje ? `<span class="badge bo">Visual ${d.puntaje}/100</span>` : ''}
-    </div>
-  </div>
-  <div class="swatch-row">
-    <div class="swatch" style="background:${d.hex || '#6B4423'}"></div>
-    <div class="swatch-info">
-      <div class="swatch-lbl">Color detectado</div>
-      <div class="swatch-val">${d.color || 'Marrón'}</div>
-      <div class="swatch-hex">${d.hex || '#6B4423'} · Agtron ~${d.agtron || 'N/D'}</div>
-    </div>
-    <div>
-      <div class="score-big">${d.puntaje || '—'}</div>
-      <div class="score-lbl">Visual /100</div>
-    </div>
-  </div>
-  <div class="scale-wrap">
-    <div class="scale-lbl">Escala de extracción</div>
-    <div class="scale-bar" style="background:linear-gradient(90deg,#F0D5A0,#C8955A,#7B4A1A,#3D1F0A,#1A0804);position:relative">
-      <div class="scale-arrow" style="left:${pos}%">▼</div>
-    </div>
-    <div class="scale-labels"><span>Sub-extraído</span><span>✓ Bien</span><span>Sobre-extraído</span></div>
-  </div>
-  ${diag ? `<div class="sec"><div class="sec-t">Diagnóstico visual</div><div class="diag-list">${diag}</div></div>` : ''}
-  ${sabores ? `<div class="sec"><div class="sec-t">Sabores probables</div><div class="ftags">${sabores}</div></div>` : ''}
-  ${ajustes ? `<div class="sec"><div class="sec-t">Ajustes recomendados</div><div class="ajustes">${ajustes}</div></div>` : ''}`;
+  const diag = (d.diagnostico||[]).map(x => x ? `<div class="diag-item"><div class="diag-icon">${x.i||'•'}</div><div><div class="diag-name">${x.n||''}</div><div class="diag-desc">${x.d||''}</div><span class="diag-badge">${x.e=='bien'?'✓ Bien':x.e=='alerta'?'⚠ Revisar':'✗ Problema'}</span></div></div>` : '').join('');
+  const sabores = (d.sabores||[]).map(s => `<span class="ftag">${s}</span>`).join('');
+  const ajustes = (d.ajustes||[]).map(a => `<div class="ajuste"><div class="ajuste-dot"></div><span>${a}</span></div>`).join('');
+  return `<div class="res-hero"><div class="res-title">${d.bebida||'Café'} · ${d.extraccion||'Análisis'}</div><div class="res-sub">${d.color||''} · Tueste ${d.tueste||'Medio'} · ${d.concentracion||''}</div><div class="res-badges"><span class="badge bb">Confianza: ${d.confianza||'Media'}</span>${d.puntaje?`<span class="badge bo">Visual ${d.puntaje}/100</span>`:''}</div></div><div class="swatch-row"><div class="swatch" style="background:${d.hex||'#6B4423'}"></div><div class="swatch-info"><div class="swatch-lbl">Color detectado</div><div class="swatch-val">${d.color||'Marrón'}</div><div class="swatch-hex">${d.hex||'#6B4423'} · Agtron ~${d.agtron||'N/D'}</div></div><div><div class="score-big">${d.puntaje||'—'}</div><div class="score-lbl">Visual /100</div></div></div><div class="scale-wrap"><div class="scale-lbl">Escala de extracción</div><div class="scale-bar" style="background:linear-gradient(90deg,#F0D5A0,#C8955A,#7B4A1A,#3D1F0A,#1A0804);position:relative"><div class="scale-arrow" style="left:${pos}%">▼</div></div><div class="scale-labels"><span>Sub-extraído</span><span>✓ Bien</span><span>Sobre-extraído</span></div></div>${diag?`<div class="sec"><div class="sec-t">Diagnóstico visual</div><div class="diag-list">${diag}</div></div>`:''}${sabores?`<div class="sec"><div class="sec-t">Sabores probables</div><div class="ftags">${sabores}</div></div>`:''}${ajustes?`<div class="sec"><div class="sec-t">Ajustes recomendados</div><div class="ajustes">${ajustes}</div></div>`:''}`;
 }
 
-function renderScan(d) {
-  // Validar que d existe y es un objeto
-  if (!d || typeof d !== 'object') {
-    return `<div style="padding:14px;color:#8B0000;font-size:13px">Error: Respuesta inválida del servidor</div>`;
-  }
-
-  // Helper para renderizar celdas
-  const cell = (l, v) => v ? `<div class="cell"><div class="cell-l">${l}</div><div class="cell-v">${v}</div></div>` : '';
-
-  // Renderizar notas
-  const notas = (d.notas || []).map(n => `<span class="ftag">${n}</span>`).join('');
-
-  // Renderizar certificaciones
-  const certs = (d.certs || []).map(c => `<span class="badge bg" style="font-size:11px;padding:4px 10px">${c}</span>`).join('');
-
-  // Campos no encontrados
-  const noEnc = (d.no_encontrados || []).join(', ');
-
-  // Renderizar resultado
-  return `<div class="res-hero">
-    <div class="res-title">${d.nombre || 'Café'}</div>
-    <div class="res-sub">${d.marca || 'Productor'}</div>
-    <div class="res-badges">
-      <span class="badge bg">Datos: ${d.datos || 'Básico'}</span>
-      ${d.sca ? `<span class="badge bo">SCA ${d.sca}</span>` : ''}
-    </div>
-  </div>
-  <div class="src-ban">📷 Extraído de la etiqueta del empaque</div>
-  <div class="grid3">
-    ${cell('Origen', d.origen)}
-    ${cell('Variedad', d.variedad)}
-    ${cell('Proceso', d.proceso)}
-    ${cell('Altura', d.altura)}
-    ${cell('Tostión', d.tostion)}
-    ${cell('Peso', d.peso)}
-  </div>
-  ${notas ? `<div class="sec"><div class="sec-t">Notas de cata</div><div class="ftags">${notas}</div></div>` : ''}
-  ${certs ? `<div class="sec"><div class="sec-t">Certificaciones</div><div class="badges">${certs}</div></div>` : ''}
-  ${d.web ? `<div class="sec"><div class="sec-t">Información comercial</div><div class="info-list"><div class="info-item"><span class="info-lbl">Web:</span><a href="${d.web}" target="_blank" style="color:#8B6F47;font-size:12px">${d.web}</a></div>${d.redes ? `<div class="info-item"><span class="info-lbl">Redes:</span><span style="font-size:12px">${d.redes}</span></div>` : ''}</div></div>` : ''}
-  ${noEnc ? `<div class="sec"><div class="sec-t" style="color:#8B5000">⚠ No visible en etiqueta</div><div style="font-size:11px;color:#5A4030">${noEnc}</div></div>` : ''}`;
-}
+function renderScan(d){if(!d||typeof d!='object')return '<div style="padding:14px;color:#8B0000">Error</div>';const cell=(l,v)=>v?`<div class="cell"><div class="cell-l">${l}</div><div class="cell-v">${v}</div></div>`:'';const notas=(d.notas||[]).map(n=>`<span class="ftag">${n}</span>`).join('');const certs=(d.certs||[]).map(c=>`<span class="badge bg" style="font-size:11px;padding:4px 10px">${c}</span>`).join('');const noEnc=(d.no_encontrados||[]).join(', ');return `<div class="res-hero"><div class="res-title">${d.nombre||'Café'}</div><div class="res-sub">${d.marca||'Productor'}</div><div class="res-badges"><span class="badge bg">Datos: ${d.datos||'Básico'}</span>${d.sca?`<span class="badge bo">SCA ${d.sca}</span>`:''}</div></div><div class="src-ban">📷 Extraído de la etiqueta del empaque</div><div class="grid3">${cell('Origen',d.origen)}${cell('Variedad',d.variedad)}${cell('Proceso',d.proceso)}${cell('Altura',d.altura)}${cell('Tostión',d.tostion)}${cell('Peso',d.peso)}</div>${notas?`<div class="sec"><div class="sec-t">Notas de cata</div><div class="ftags">${notas}</div></div>`:''}${certs?`<div class="sec"><div class="sec-t">Certificaciones</div><div class="badges">${certs}</div></div>`:''}${d.web?`<div class="sec"><div class="sec-t">Información comercial</div><div class="info-list"><div class="info-item"><span class="info-lbl">Web:</span><a href="${d.web}" target="_blank" style="color:#8B6F47;font-size:12px">${d.web}</a></div>${d.redes?`<div class="info-item"><span class="info-lbl">Redes:</span><span style="font-size:12px">${d.redes}</span></div>`:''}</div></div>`:''}${noEnc?`<div class="sec"><div class="sec-t" style="color:#8B5000">⚠ No visible en etiqueta</div><div style="font-size:11px;color:#5A4030">${noEnc}</div></div>`:''}`;
 }
 
 function selM(k) {
