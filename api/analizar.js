@@ -1,12 +1,13 @@
 // api/analizar.js - Edge Function para Vercel
 // Proxy seguro que usa ANTHROPIC_API_KEY de variables de entorno
+// Soporta análisis de MOLIENDA y TAZA con prompts específicos
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { base64Image } = req.body;
+  const { base64Image, type } = req.body;
 
   if (!base64Image) {
     return res.status(400).json({ error: 'Image base64 required' });
@@ -16,6 +17,58 @@ export default async function handler(req, res) {
   if (!apiKey) {
     return res.status(500).json({ error: 'API key not configured' });
   }
+
+  // Prompt específico para MOLIENDA (detecta tostión con precisión)
+  const promptMolienda = `ANALIZA ESTA FOTO DE CAFÉ MOLIDO COMO ESPECIALISTA. COMPARA EL COLOR CON AGTRON:
+- Claro/Light: #C8A070 (Agtron 95) - café muy pálido
+- Medio-Claro/City: #A89060 (Agtron 70-75) - café marrón claro
+- Medio/Full City: #7B5A30 (Agtron 55-60) - café marrón estándar
+- Medio-Oscuro/French: #5A3820 (Agtron 40-45) - café oscuro
+- Oscuro/Espresso: #3D2415 (Agtron 25-30) - café muy oscuro/negro
+
+OBSERVA: Tamaño de partículas, brillo, uniformidad, aceites visibles.
+
+DEVUELVE SOLO JSON:
+{
+  "molienda_tipo": "Media" o "Media-Fina" o "Fina" o "Gruesa",
+  "molienda_desc": "Descripción breve",
+  "tueste_nivel": "Claro" o "Medio-Claro" o "Medio" o "Medio-Oscuro" o "Oscuro",
+  "hex": "#6B4423",
+  "agtron": "55",
+  "confianza": "Alta",
+  "metodos": [
+    {"n": "V60", "r": "Claridad y acidez", "i": "🌐", "c": "ideal"},
+    {"n": "Prensa", "r": "Cuerpo completo", "i": "☕", "c": "ok"}
+  ],
+  "sabores": ["chocolate", "frutas", "caramelo"],
+  "tips": ["Agua 92-93°C", "Molienda uniforme", "Ratio 1:15"]
+}`;
+
+  // Prompt específico para TAZA (detecta extracción)
+  const promptTaza = `ANALIZA ESTA FOTO DE CAFÉ EN TAZA COMO ESPECIALISTA SCA. EVALÚA:
+1. Color: Tonalidad (marrón claro/medio/oscuro)
+2. Extracción: Sub-extraído (claro/pálido), Bien (marrón balanceado), Sobre-extraído (muy oscuro)
+3. Transparencia: Vs opacidad según método (V60=transparente, Prensa=opaca)
+4. Cuerpo: Viscosidad percibida
+
+DEVUELVE SOLO JSON:
+{
+  "bebida": "Café de especialidad",
+  "extraccion": "Bien extraído" o "Sub-extraído" o "Sobre-extraído",
+  "color": "Describe el tono",
+  "tueste": "Medio",
+  "concentracion": "Cuerpo medio-completo",
+  "confianza": "Alta",
+  "puntaje": 82,
+  "hex": "#6B4423",
+  "agtron": "55",
+  "diagnostico": [
+    {"n": "Color", "d": "Descripción", "e": "bien", "i": "✓"},
+    {"n": "Transparencia", "d": "Según método", "e": "bien", "i": "✓"}
+  ],
+  "sabores": ["chocolate oscuro", "frutas", "caramelo"],
+  "ajustes": ["Extracción 4-5 min", "Agua 85-90°C", "Molienda consistente"]
+}`;
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -42,26 +95,7 @@ export default async function handler(req, res) {
               },
               {
                 type: 'text',
-                text: `Analiza esta foto de café en taza como especialista SCA. DEVUELVE SOLO JSON VÁLIDO:
-
-{
-  "bebida": "Café de especialidad",
-  "extraccion": "Bien extraído",
-  "color": "Marrón (describe el tono)",
-  "tueste": "Medio",
-  "concentracion": "Cuerpo medio-completo",
-  "confianza": "Alta",
-  "puntaje": 82,
-  "hex": "#6B4423",
-  "agtron": "55",
-  "diagnostico": [
-    {"n": "Color", "d": "Tono marrón indica extracción balanceada", "e": "bien", "i": "✓"},
-    {"n": "Claridad", "d": "Bebida transparente vs opaca según método", "e": "bien", "i": "✓"},
-    {"n": "Cuerpo", "d": "Viscosidad apropiada para especialidad", "e": "bien", "i": "✓"}
-  ],
-  "sabores": ["chocolate oscuro", "frutas secas", "nueces", "caramelo"],
-  "ajustes": ["Mantener tiempo de extracción 4-5 minutos", "Temperatura de agua 85-90°C", "Molienda media consistente"]
-}`
+                text: type === 'molienda' ? promptMolienda : promptTaza
               }
             ]
           }
@@ -80,12 +114,10 @@ export default async function handler(req, res) {
     // Limpiar la respuesta y extraer JSON
     let jsonText = text.trim();
     
-    // Si tiene ```json, quitarlo
     if (jsonText.includes('```json')) {
       jsonText = jsonText.replace(/```json\n?/g, '').replace(/```\n?/g, '');
     }
     
-    // Encontrar el primer { y el último }
     const firstBrace = jsonText.indexOf('{');
     const lastBrace = jsonText.lastIndexOf('}');
     
