@@ -1,5 +1,6 @@
 // api/buscar.js - Edge Function para Vercel
-// Proxy seguro para buscar cafés
+// Búsqueda de información sobre cafés
+// Prompts profesionales de barista
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -17,6 +18,19 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'API key not configured' });
   }
 
+  const promptBusqueda = `ERES EXPERTO EN CAFÉS ESPECIALES Y BARISTA CON 15+ AÑOS DE EXPERIENCIA.
+
+El usuario pregunta: "${query}"
+
+RESPONDE COMO BARISTA PROFESIONAL:
+- Si es sobre tostión, molienda o extracción: Da recomendación técnica precisa
+- Si es sobre orígenes: Describe perfil de sabor y características del café
+- Si es sobre métodos de preparación: Guía paso a paso profesional
+- Si es sobre variedades: Explica genética y características
+- Si es sobre problemas de café: Diagnostica como SCA Certified
+
+DEVUELVE RESPUESTA CLARA, PRÁCTICA Y PROFESIONAL (máx 300 caracteres).`;
+
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -27,11 +41,11 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: 'claude-opus-4-8',
-        max_tokens: 1024,
+        max_tokens: 256,
         messages: [
           {
             role: 'user',
-            content: `Busca el café: "${query}"\n\nDevuelve SOLO JSON válido, sin texto adicional:\n\n{\n  "nombre": "nombre del café",\n  "origen": "país/región",\n  "sca": 86,\n  "proceso": "Lavado",\n  "altitud": "1800 msnm",\n  "precio_usd": 12,\n  "sabor": "chocolate, frutas",\n  "metodo": "V60"\n}`
+            content: promptBusqueda
           }
         ]
       })
@@ -43,35 +57,12 @@ export default async function handler(req, res) {
     }
 
     const data = await response.json();
-    const text = data.content[0].text;
+    const respuesta = data.content[0].text;
 
-    // Limpiar la respuesta y extraer JSON
-    let jsonText = text.trim();
-    
-    // Si tiene ```json, quitarlo
-    if (jsonText.includes('```json')) {
-      jsonText = jsonText.replace(/```json\n?/g, '').replace(/```\n?/g, '');
-    }
-    
-    // Encontrar el primer { y el último }
-    const firstBrace = jsonText.indexOf('{');
-    const lastBrace = jsonText.lastIndexOf('}');
-    
-    if (firstBrace === -1 || lastBrace === -1) {
-      return res.status(200).json({ error: 'No JSON found', raw: text });
-    }
-    
-    const jsonStr = jsonText.substring(firstBrace, lastBrace + 1);
-    
-    try {
-      const result = JSON.parse(jsonStr);
-      return res.status(200).json(result);
-    } catch (parseErr) {
-      return res.status(200).json({ 
-        error: 'Invalid JSON: ' + parseErr.message, 
-        raw: jsonStr.substring(0, 500)
-      });
-    }
+    return res.status(200).json({ 
+      respuesta: respuesta,
+      confianza: 'Alta'
+    });
   } catch (error) {
     console.error('Error:', error);
     return res.status(500).json({ error: error.message });
