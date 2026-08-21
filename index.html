@@ -110,12 +110,14 @@
     .sec-btn { flex: 1; padding: 12px; background: transparent; color: #8B6F47; border: 1.5px solid #8B6F47; border-radius: 12px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s ease-out; }
 
     /* CAMERA */
-    .cam-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-    .cam-opt { background: #FEFDFB; border: 1px solid #E8DDD0; border-radius: 14px; padding: 16px 10px; text-align: center; cursor: pointer; }
-    .cam-opt.sel { border-color: #8B6F47; background: #FAF0E8; }
-    .cam-opt-icon { font-size: 24px; margin-bottom: 6px; }
-    .cam-opt-name { font-size: 12px; font-weight: 500; color: #1A0A04; margin-bottom: 2px; }
-    .cam-opt-sub { font-size: 10px; color: #7A6050; }
+    .cam-opts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+    .cam-opt { background: #FEFDFB; border: 1.5px solid #E8DDD0; border-radius: 16px; padding: 20px 12px; text-align: center; cursor: pointer; transition: all 0.25s ease-out; transform: translateY(0); }
+    .cam-opt:active { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(139,111,71,0.15); }
+    .cam-opt:hover { border-color: #D4A574; background: #FEF9F3; }
+    .cam-opt.sel { border-color: #8B6F47; background: #FAF0E8; box-shadow: 0 4px 12px rgba(139,111,71,0.12); }
+    .cam-opt-icon { font-size: 32px; margin-bottom: 8px; display: block; }
+    .cam-opt-name { font-size: 13px; font-weight: 600; color: #1A0A04; margin-bottom: 4px; }
+    .cam-opt-sub { font-size: 11px; color: #7A6050; line-height: 1.4; }
     .cam-preview { width: 100%; border-radius: 14px; overflow: hidden; background: #1A0A04; position: relative; margin-bottom: 12px; display: none; }
     .cam-preview img { width: 100%; max-height: 260px; object-fit: cover; display: block; }
     .cam-preview video { width: 100%; max-height: 260px; object-fit: cover; display: block; }
@@ -253,6 +255,12 @@
     .apikey-lbl { font-size: 11px; color: #5A4030; margin-bottom: 6px; font-weight: 500; }
     .apikey-input { width: 100%; padding: 10px; font-family: 'Montserrat', sans-serif; font-size: 13px; border: 1px solid #D4A574; border-radius: 8px; background: #FEFDFB; color: #1A0A04; outline: none; }
     .apikey-hint { font-size: 10px; color: #7A6050; margin-top: 5px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 380px) {
+      .cam-opts { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .cam-opts .cam-opt:nth-child(3) { grid-column: 1 / -1; max-width: 140px; margin: 0 auto; }
+    }
   </style>
 </head>
 <body>
@@ -396,14 +404,19 @@
         <div class="cam-opt-name">Café en Taza</div>
         <div class="cam-opt-sub">Foto de la bebida</div>
       </div>
+      <div class="cam-opt" id="opt-etiqueta" onclick="goTo('scanner')">
+        <div class="cam-opt-icon">📦</div>
+        <div class="cam-opt-name">Escanear Etiqueta</div>
+        <div class="cam-opt-sub">Foto del empaque</div>
+      </div>
     </div>
 
     <div style="background:#F5EDD6;padding:14px;border-radius:10px;margin-bottom:14px">
       <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#8B6F47;margin-bottom:8px">📸 Cómo usar Analizar</div>
       <div style="font-size:12px;color:#5C3520;line-height:1.6">
-        <strong>En la bolsa:</strong> Fotografía la etiqueta frontal del café<br>
-        <strong>En la molienda:</strong> Toma una foto de cerca del café molido<br>
-        <strong>En la taza:</strong> Fotografía tu bebida preparada para análisis visual
+        <strong>Escanear etiqueta:</strong> Fotografía el empaque del café<br>
+        <strong>Molienda:</strong> Toma una foto de cerca del café molido<br>
+        <strong>Taza:</strong> Fotografía tu bebida preparada para análisis visual
       </div>
     </div>
 
@@ -482,8 +495,8 @@
   </div>
   <div class="bnav">
     <button class="bnav-btn" onclick="goTo('home')"><span class="bnav-icon">🏠</span>Inicio</button>
-    <button class="bnav-btn" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
-    <button class="bnav-btn active"><span class="bnav-icon">🛒</span>Tienda</button>
+    <button class="bnav-btn active" onclick="goTo('camara')"><span class="bnav-icon">📷</span>Analizar</button>
+    <button class="bnav-btn" onclick="goTo('tienda')"><span class="bnav-icon">🛒</span>Tienda</button>
     <button class="bnav-btn" onclick="goTo('perfil')"><span class="bnav-icon">👤</span>Perfil</button>
   </div>
 </div>
