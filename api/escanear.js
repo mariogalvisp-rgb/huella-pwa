@@ -42,7 +42,20 @@ export default async function handler(req, res) {
               },
               {
                 type: 'text',
-                text: `ANÁLISIS DE TRAZABILIDAD - CAFÉ DE ESPECIALIDAD\n\nAnaliza esta etiqueta de café y extrae INFORMACIÓN DE TRAZABILIDAD.\nLa bolsa puede estar sellada, molida o en grano.\n\nDevuelve un JSON con:\n{\n  "cafe_nombre": "nombre del café",\n  "productor": "nombre del productor",\n  "finca": "nombre de la finca",\n  "origen": "país/región/ciudad",\n  "altitud": "msnm (ej: 1800 msnm)",\n  "variedad": "varietal(es)",\n  "proceso": "Lavado/Natural/Honey/Fermentado",\n  "sca_score": "número si aparece (ej: 86)",\n  "peso": "tamaño de bolsa",\n  "tostador": "nombre del tostador",\n  "fecha": "fecha de tostado si aparece",\n  "certificaciones": ["Orgánico", "Fair Trade"],\n  "trazabilidad_calificacion": "Excelente/Buena/Básica",\n  "caracteristicas_especialidad": {\n    "tiene_origen_especifico": true,\n    "tiene_altitud": true,\n    "tiene_variedad": true,\n    "tiene_sca_score": true,\n    "tiene_proceso_identificado": true\n  },\n  "es_especialidad": true,\n  "razon": "Explicación clara"\n}\n\nIMPORTANTE: Extrae exactamente lo que ves. SCA 85+ es especialidad.`
+                text: `Lee esta etiqueta de café. Devuelve SOLO JSON válido, sin texto adicional:
+
+{
+  "cafe_nombre": "Colibrí Amazilia",
+  "productor": "Oscar González",
+  "finca": "Coello",
+  "origen": "Cajamarca, Tolima",
+  "altitud": "1800 msnm",
+  "variedad": "Colombia",
+  "proceso": "Honey",
+  "sca_score": 86,
+  "peso": "454g",
+  "es_especialidad": true
+}`
               }
             ]
           }
