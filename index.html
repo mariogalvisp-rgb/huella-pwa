@@ -941,8 +941,8 @@
       <div class="prof-name">Mi Perfil</div>
       <div class="prof-sub">Amante del café de especialidad</div>
       <div class="prof-stats">
-        <div class="stat"><div class="stat-n">5</div><div class="stat-l">Probados</div></div>
-        <div class="stat"><div class="stat-n">3</div><div class="stat-l">Catas</div></div>
+        <div class="stat"><div class="stat-n" id="stat-probados">0</div><div class="stat-l">Probados</div></div>
+        <div class="stat"><div class="stat-n" id="stat-catas">0</div><div class="stat-l">Catas</div></div>
         <div class="stat"><div class="stat-n" id="fav-stat-num">0</div><div class="stat-l">Favoritos</div></div>
       </div>
     </div>
@@ -965,6 +965,7 @@
         </div>
       </div>
       <div style="padding:12px 0;margin-top:12px;border-top:0.5px solid #E8DDD0">
+        <button onclick="resetearEstadisticas()" style="width:100%;padding:12px;background:#F5EDD6;color:#8B5000;border:1px solid #D4A574;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;cursor:pointer;margin-bottom:10px">🔄 Resetear Estadísticas</button>
         <a href="https://wa.me/573117682407?text=Hola%20Huella%20de%20Origen%2C%20tengo%20una%20pregunta" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px;background:#25D366;color:white;border-radius:10px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;margin-bottom:10px;box-shadow:0 2px 8px rgba(37,211,102,0.2)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.425 0-2.834.356-4.06 1.031l-.291.164-.302-.05c-1.082-.188-2.113-.479-3.1-.944l.49 1.544c.47 1.505.934 2.585 1.956 3.497-1.023.789-1.924 1.906-2.503 3.222-.579 1.317-.744 2.741-.436 4.127.308 1.386 1.018 2.652 1.972 3.622.953.97 2.22 1.679 3.606 1.987 1.386.308 2.81.144 4.127-.436 1.317-.579 2.434-1.48 3.222-2.503.912 1.022 1.997 1.486 3.497 1.956l1.544.49c-.465-.987-.756-2.018-.944-3.1l-.05-.302.164-.291c.675-1.226 1.031-2.635 1.031-4.06 0-2.792-1.104-5.424-3.11-7.43-2.006-2.006-4.638-3.11-7.43-3.11Z"/></svg>
           WhatsApp
@@ -1029,6 +1030,37 @@ function verificarLogin() {
     goTo('login');
   } else {
     goTo('home');
+  }
+}
+
+// ESTADISTICAS
+function cargarEstadisticas() {
+  const probados = parseInt(localStorage.getItem('huellaEstadisticas_probados') || '0');
+  const catas = parseInt(localStorage.getItem('huellaEstadisticas_catas') || '0');
+  document.getElementById('stat-probados').textContent = probados;
+  document.getElementById('stat-catas').textContent = catas;
+}
+
+function incrementarProbados() {
+  const actual = parseInt(localStorage.getItem('huellaEstadisticas_probados') || '0');
+  const nuevo = actual + 1;
+  localStorage.setItem('huellaEstadisticas_probados', nuevo);
+  document.getElementById('stat-probados').textContent = nuevo;
+}
+
+function incrementarCatas() {
+  const actual = parseInt(localStorage.getItem('huellaEstadisticas_catas') || '0');
+  const nuevo = actual + 1;
+  localStorage.setItem('huellaEstadisticas_catas', nuevo);
+  document.getElementById('stat-catas').textContent = nuevo;
+}
+
+function resetearEstadisticas() {
+  if (confirm('¿Resetear estadísticas (Probados y Catas)? Esta acción no se puede deshacer.')) {
+    localStorage.setItem('huellaEstadisticas_probados', '0');
+    localStorage.setItem('huellaEstadisticas_catas', '0');
+    cargarEstadisticas();
+    alert('Estadísticas reseteadas correctamente');
   }
 }
 
@@ -1196,6 +1228,11 @@ async function analizarIA() {
     document.getElementById('loading').classList.remove('show');
     document.getElementById('result-box').innerHTML = curOpt === 'molienda' ? renderMolienda(d) : renderTaza(d);
     document.getElementById('result-box').classList.add('show');
+    if (curOpt === 'molienda') {
+      incrementarProbados(); // Molienda = Probados
+    } else if (curOpt === 'taza') {
+      incrementarCatas(); // Taza = Catas
+    }
   } catch(e) {
     clearInterval(loadTimer);
     document.getElementById('loading').classList.remove('show');
@@ -1224,6 +1261,7 @@ async function escanearEtiqueta() {
     document.getElementById('load-scan').classList.remove('show');
     document.getElementById('scan-result').innerHTML = renderEtiqueta(d);
     document.getElementById('scan-result').classList.add('show');
+    incrementarProbados(); // Etiqueta = Probados
   } catch(e) {
     clearInterval(scanTimer);
     document.getElementById('load-scan').classList.remove('show');
@@ -1363,6 +1401,7 @@ if ('serviceWorker' in navigator) {
 
 // Verificar login al cargar
 document.addEventListener('DOMContentLoaded', () => {
+  cargarEstadisticas(); // Cargar estadísticas desde localStorage
   const usuario = localStorage.getItem('usuarioHuella');
   if (usuario) {
     document.getElementById('sc-login').classList.remove('active');
