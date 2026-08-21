@@ -352,14 +352,235 @@
       transform: scale(0.98);
     }
 
+    /* HERO SECTION - NUEVA */
+    .hero {
+      background: linear-gradient(135deg, #8B6F47 0%, #6B5344 100%);
+      color: #F5EDD6;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(44,24,16,0.12);
+    }
+    .hero-logo {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 20px;
+      object-fit: contain;
+    }
+    .hero-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .hero-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      line-height: 1.3;
+      color: #D4A574;
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: #E8D4C0;
+      margin-bottom: 24px;
+      line-height: 1.6;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .hero-cta {
+      padding: 14px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: all 0.3s ease-out;
+    }
+    .hero-cta-primary {
+      background: #F5EDD6;
+      color: #8B6F47;
+    }
+    .hero-cta-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255,255,255,0.2);
+    }
+    .hero-cta-secondary {
+      background: rgba(255,255,255,0.15);
+      color: #F5EDD6;
+      border: 1.5px solid #D4A574;
+    }
+    .hero-cta-secondary:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-2px);
+    }
+
+    /* POSITIONING SECTION - NUEVA */
+    .positioning {
+      background: #F5EDD6;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      text-align: center;
+      border-left: 4px solid #8B6F47;
+    }
+    .positioning-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #2C1810;
+      line-height: 1.5;
+    }
+
+    /* EXPERIENCIAS SECTION - REORGANIZADA */
+    .experiences-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .experience-card {
+      background: #FEFDFB;
+      border: 1.5px solid #D4A574;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease-out;
+    }
+    .experience-card:hover {
+      border-color: #8B6F47;
+      box-shadow: 0 4px 12px rgba(139,111,71,0.15);
+      transform: translateY(-4px);
+    }
+    .experience-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    .experience-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #2C1810;
+      margin-bottom: 6px;
+    }
+    .experience-desc {
+      font-size: 12px;
+      color: #8B7555;
+      line-height: 1.4;
+    }
+
+    /* EDUCATION SECTION - NUEVA */
+    .education-section {
+      background: linear-gradient(135deg, #F5EDD6 0%, #FEFDFB 100%);
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      border: 1px solid #E8DDD0;
+    }
+    .education-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #8B6F47;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .education-desc {
+      font-size: 13px;
+      color: #5C3520;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .education-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .education-tag {
+      background: #FEFDFB;
+      border: 1px solid #D4A574;
+      border-radius: 20px;
+      padding: 8px 14px;
+      font-size: 11px;
+      color: #8B6F47;
+      font-weight: 500;
+    }
+
+    /* PRODUCTOS SECTION HEADER - NUEVO */
+    .products-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #8B6F47;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
     /* RESPONSIVE MEJORADO */
+    @media (max-width: 600px) {
+      .hero {
+        padding: 30px 16px;
+      }
+      .hero-logo {
+        width: 140px;
+        height: 140px;
+      }
+      .hero-brand {
+        font-size: 28px;
+      }
+      .hero-main {
+        font-size: 18px;
+      }
+      .hero-sub {
+        font-size: 13px;
+      }
+      .hero-ctas {
+        flex-direction: column;
+      }
+      .experiences-grid {
+        grid-template-columns: 1fr;
+      }
+      .positioning-text {
+        font-size: 16px;
+      }
+    }
+
     @media (max-width: 380px) {
-      .sec-h { font-size: 22px; }
-      .prod-grid { grid-template-columns: 1fr; }
-      .tool-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .content { padding: 14px; }
-      .cam-opts { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .cam-opts .cam-opt:nth-child(3) { grid-column: 1 / -1; max-width: 140px; margin: 0 auto; }
+      .hero-logo {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 16px;
+      }
+      .hero-brand {
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+      .hero-main {
+        font-size: 16px;
+      }
+      .hero-sub {
+        font-size: 12px;
+      }
+      .experiences-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .education-section {
+        padding: 16px;
+      }
     }
   </style>
 </head>
@@ -396,16 +617,67 @@
     </div>
   </div>
   <div class="content">
+    <div class="hero">
+      <img src="logohuelladeorigen.png" alt="Huella de Origen" class="hero-logo">
+      <div class="hero-brand">Huella de Origen</div>
+      <div class="hero-main">Descubre el café desde su origen</div>
+      <div class="hero-sub">Conoce, analiza y disfruta el café de especialidad de una forma diferente.</div>
+      <div class="hero-ctas">
+        <button class="hero-cta hero-cta-primary" onclick="goTo('camara')">📷 Analizar mi café</button>
+        <button class="hero-cta hero-cta-secondary" onclick="goTo('tienda')">🛒 Explorar cafés</button>
+      </div>
+    </div>
+
     <div id="install-banner" class="install-banner" style="display:none">
       <div class="install-icon">📲</div>
       <div class="install-text"><strong>Instalar la app</strong><br>Toca "Compartir" → "Agregar a pantalla de inicio"</div>
       <button class="install-btn" onclick="this.closest('.install-banner').style.display='none'">✓ OK</button>
     </div>
 
-    <div class="sec-hdr">
-      <div class="sec-h">Descubre Nuestros Cafés</div>
-      <div class="ver-mas" onclick="goTo('tienda')">Ver todos →</div>
+    <div class="positioning">
+      <div class="positioning-text">Tu café. Su origen. Toda la historia.</div>
     </div>
+
+    <div class="sec-hdr">
+      <div class="sec-h">4 Formas de Descubrir</div>
+    </div>
+    <div class="experiences-grid">
+      <div class="experience-card" onclick="goTo('tienda')">
+        <div class="experience-icon">🌱</div>
+        <div class="experience-title">Descubre</div>
+        <div class="experience-desc">Encuentra nuevos cafés de especialidad</div>
+      </div>
+      <div class="experience-card" onclick="goTo('camara')">
+        <div class="experience-icon">📷</div>
+        <div class="experience-title">Analiza</div>
+        <div class="experience-desc">Evalúa la calidad de tu café</div>
+      </div>
+      <div class="experience-card" onclick="goTo('scanner')">
+        <div class="experience-icon">📦</div>
+        <div class="experience-title">Escanea</div>
+        <div class="experience-desc">Lee la etiqueta y descubre origen</div>
+      </div>
+      <div class="experience-card" onclick="goTo('calc')">
+        <div class="experience-icon">⚖️</div>
+        <div class="experience-title">Prepara</div>
+        <div class="experience-desc">Obtén la receta perfecta</div>
+      </div>
+    </div>
+
+    <div class="education-section">
+      <div class="education-title">📚 Aprende a Entender tu Café</div>
+      <div class="education-desc">Domina los conceptos clave del café de especialidad sin necesidad de ser un experto.</div>
+      <div class="education-tags">
+        <span class="education-tag">Origen</span>
+        <span class="education-tag">Variedad</span>
+        <span class="education-tag">Proceso</span>
+        <span class="education-tag">Tueste</span>
+        <span class="education-tag">Notas</span>
+        <span class="education-tag">Preparación</span>
+      </div>
+    </div>
+
+    <div class="products-header">Cafés con Una Historia Que Contar</div>
     <div class="prod-grid">
       <div class="prod" onclick="goTo('chivito')">
         <img class="prod-img" src="opt_chivito.png" alt="Chivito">
@@ -450,27 +722,6 @@
             <button class="add-btn" onclick="event.stopPropagation();comprar('trilogia')">+ Agregar</button>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="sec-hdr">
-      <div class="sec-h">Conoce Mejor Tu Café</div>
-    </div>
-    <div class="tool-grid">
-      <div class="tool-card" onclick="goTo('camara')">
-        <div class="tool-icon">📷</div>
-        <div class="tool-name">Analizar</div>
-        <div class="tool-sub">Descubre la calidad de tu café</div>
-      </div>
-      <div class="tool-card" onclick="goTo('calc')">
-        <div class="tool-icon">⚖️</div>
-        <div class="tool-name">Preparar</div>
-        <div class="tool-sub">Encuentra la proporción perfecta</div>
-      </div>
-      <div class="tool-card" onclick="goTo('scanner')">
-        <div class="tool-icon">📦</div>
-        <div class="tool-name">Descubrir</div>
-        <div class="tool-sub">Conoce el origen de tu café</div>
       </div>
     </div>
   </div>
