@@ -19,92 +19,49 @@ export default async function handler(req, res) {
   }
 
   // PROMPT PROFESIONAL DE BARISTA - ESCANEAR ETIQUETA
-  const promptEtiqueta = `ERES BARISTA PROFESIONAL CON 15+ AÑOS Y EXPERTO EN LECTURA DE ETIQUETAS.
+  const promptEtiqueta = `ERES BARISTA PROFESIONAL. LEE ESTA ETIQUETA DE CAFE.
 
-TAREA CRÍTICA: Diferencia entre ESPECIALIDAD vs COMERCIAL
+EXTRAE EXACTAMENTE:
+- nombre: El nombre del cafe (texto)
+- marca: La marca (texto)
+- origen: Pais (ej: Colombia, Ethiopia)
+- region: Region especifica o null
+- finca: Nombre finca o null
+- variedad: Variedad especifica (ej: Bourbon) o null
+- altura: Altitud ej 1800 o null
+- proceso: Lavado, Natural, Honey, Fermentado
+- tostion: Claro, Medio, Fuerte, Oscuro
+- peso: ej 454g
+- sca: numero o null
+- sca_verificable: true si tiene certificado, false si no
+- rating: numero con decimales o null
+- verificado: true o false
+- confianza: Alta, Media, Baja
+- tipo_cafe: Especialidad o Comercial
+- notas: lista de 3-4 sabores simples (sin caracteres especiales)
+- preparacion: lista de 2-3 metodos simples
 
-ESPECIALIDAD = SCA 86+ + Trazabilidad REAL (finca, región, altitud, variedad)
-COMERCIAL = Sin trazabilidad, genérico, SCA no verificable
-
-PASO 1 - EXTRAE INFORMACIÓN VISIBLE:
-- Nombre del café
-- Marca/Productor
-- Origen (ej: "Colombia" genérico vs "Nariño, Finca X")
-- Variedad (ej: "Bourbon Rojo" específico vs "Arábica" genérico)
-- Altitud (ej: "1800-2100 msnm" específico vs AUSENTE)
-- Proceso (Lavado, Natural, Honey, Fermentado)
-- Tostión (Claro, Medio, Fuerte, Oscuro) - SIEMPRE INCLUYE SI APARECE
-- Peso
-- SCA Score (si aparece)
-- Rating (★ si aparece)
-
-PASO 2 - VALIDA TRAZABILIDAD:
-ESPECIALIDAD = Finca NOMBRADA + Región ESPECÍFICA + Altitud EXACTA + Variedad ESPECÍFICA
-COMERCIAL = "Colombia" genérico, "Arábica" genérico, sin finca, sin altitud exacta
-
-PASO 3 - VALIDA CERTIFICACIÓN SCA:
-- SCA VERIFICABLE = Viene con certificado oficial, número de lote, datos de cata
-- SCA NO VERIFICABLE = Solo dice "SCA 86" en el empaque sin certificación real
-- COMERCIAL = No dice SCA, solo "de masa"
-
-PASO 4 - CLASIFICA TIPO DE CAFÉ:
-- ESPECIALIDAD: Trazabilidad completa + SCA 86+ verificable
-- COMERCIAL: Falta trazabilidad O SCA no verificable
-- MASA: Genérico, sin información técnica
-
-PASO 5 - CONFIANZA EN LECTURA:
-- Alta: Etiqueta clara, legible, foto nítida
-- Media: Legible pero con pequeños reflejos
-- Baja: Borrosa o parcialmente visible
-
-DEVUELVE SOLO JSON (sin backticks):
+DEVUELVE SOLO JSON VALIDO, SIN COMILLAS EN VALORES:
 {
-  "nombre": "Viejo Molino",
-  "marca": "Viejo Molino",
-  "tipo_cafe": "Comercial",
-  "trazabilidad": "Genérica (sin finca, región o altitud exacta)",
+  "nombre": "Quetzal",
+  "marca": "Marca",
   "origen": "Colombia",
-  "pais": "Colombia",
-  "region": null,
-  "finca": null,
-  "variedad": "Arábica (genérica, no específica)",
-  "altura": null,
+  "region": "Tolima",
+  "finca": "Nombre",
+  "variedad": "Castillo",
+  "altura": "1900",
   "proceso": "Lavado",
-  "tostion": "Fuerte",
-  "tostion_nivel": "Fuerte",
+  "tostion": "Medio",
   "peso": "454g",
-  "sca": null,
-  "sca_verificable": false,
-  "sca_nota": "No es café SCA certificado - solo publicidad en empaque",
-  "rating": null,
-  "verificado": false,
+  "sca": 86,
+  "sca_verificable": true,
+  "rating": 5.0,
+  "verificado": true,
   "confianza": "Alta",
-  "badges": [
-    {"icon": "☕", "text": "Tostión Fuerte", "bg": "#8B6F47", "color": "#F5EDD6"},
-    {"icon": "100%", "text": "Puro", "bg": "#F5EDD6", "color": "#5A4030"},
-    {"icon": "↻", "text": "Lavado", "bg": "#F5EDD6", "color": "#5A4030"}
-  ],
-  "trazabilidad_items": [
-    "Proceso: Lavado documentado",
-    "Tostión: Fuerte especificado",
-    "Pureza: 100% confirmado"
-  ],
-  "notas": [
-    "Cuerpo robusto",
-    "Sabor fuerte",
-    "Amargor intenso",
-    "Ideal para postres"
-  ],
-  "preparacion": [
-    "Agua 85-88°C (tostión fuerte)",
-    "Ratio 1:10-1:12 para más cuerpo",
-    "Ideal con leche o negro fuerte",
-    "Prensa Francesa recomendada"
-  ],
-  "web": null,
-  "redes": null,
-  "clasificacion_final": "CAFÉ COMERCIAL / DE MASA",
-  "notas_barista": "Café comercial sin certificación SCA. Información verificable: Tostión Fuerte, Proceso Lavado, 100% Puro. Sin trazabilidad de finca. Ideal para uso doméstico masivo."
+  "tipo_cafe": "Especialidad",
+  "notas": ["Chocolate", "Frutas", "Caramelo"],
+  "preparacion": ["V60", "Prensa", "Chemex"],
+  "notas_barista": "Cafe de especialidad con trazabilidad completa"
 }`;
 
   try {
