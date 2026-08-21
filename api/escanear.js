@@ -45,21 +45,31 @@ export default async function handler(req, res) {
                 text: `Lee esta etiqueta de café. DEVUELVE SOLO JSON VÁLIDO:
 
 {
-  "nombre": "Nombre del Café",
-  "marca": "Marca/Productor",
-  "datos": "Completo",
+  "nombre": "Chivito de Páramo",
+  "marca": "Huella de Origen",
+  "productor": "Don Alfonso",
+  "finca": "Buenavista",
   "sca": 86,
-  "origen": "Región, País",
-  "variedad": "Arábica/Variedad",
-  "proceso": "Lavado/Honey/Natural",
-  "altura": "1800-2100 msnm",
+  "rating": 4.83,
+  "verificado": true,
+  "origen": "Cajamarca, Tolima",
+  "variedad": "Caturra",
+  "altura": "1850 msnm",
+  "proceso": "Lavado",
   "tostion": "Medio",
   "peso": "454g",
-  "notas": ["chocolate", "frutas", "caramelo", "floral"],
-  "certs": ["Especialidad SCA", "Trazabilidad", "Café de Origen"],
-  "no_encontrados": [],
-  "web": "https://huelladeorigen.com",
-  "redes": "@huelladeorigen_"
+  "badges": [
+    {"icon": "✦", "text": "ESPECIALIDAD", "bg": "#8B6F47", "color": "#F5EDD6"},
+    {"icon": "↻", "text": "Lavado", "bg": "#F5EDD6", "color": "#5A4030"},
+    {"icon": "☕", "text": "Tostión Media", "bg": "#F5EDD6", "color": "#5A4030"}
+  ],
+  "trazabilidad": ["Finca Buenavista", "Don Alfonso", "Cajamarca", "Lavado", "Tostión Media", "454g"],
+  "notas": ["Panela", "Miel", "Floral", "Aromático", "Acidez media"],
+  "preparacion": [
+    "V60 o Chemex a 92-93°C para resaltar notas florales",
+    "Ratio 1:15 · Molienda media-fina",
+    "Ideal negro — el dulzor natural no necesita azúcar"
+  ]
 }`
               }
             ]
