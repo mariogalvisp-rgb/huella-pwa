@@ -263,8 +263,101 @@
     .apikey-input { width: 100%; padding: 10px; font-family: 'Montserrat', sans-serif; font-size: 13px; border: 1px solid #D4A574; border-radius: 8px; background: #FEFDFB; color: #1A0A04; outline: none; }
     .apikey-hint { font-size: 10px; color: #7A6050; margin-top: 5px; }
 
-    /* RESPONSIVE */
+    /* ESCALA TIPOGRÁFICA MEJORADA */
+    .h1 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; line-height: 1.2; }
+    .h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; line-height: 1.3; }
+    .h3 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; line-height: 1.4; }
+    .label { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+
+    /* SISTEMA DE ESPACIADO MEJORADO */
+    .content { padding: 16px; }
+    .sec-hdr { margin: 20px 0 16px; }
+    .tool-grid { gap: 16px; margin-bottom: 24px; }
+    .prod-grid { gap: 12px; margin-bottom: 20px; }
+    .sec { padding: 16px; margin-top: 24px; }
+
+    /* TARJETAS DE PRODUCTO MEJORADAS */
+    .prod-img { height: 180px; }
+    .prod-info { padding: 12px; }
+    .prod-name { 
+      font-size: 14px; 
+      font-weight: 600; 
+      font-family: 'Playfair Display', serif; 
+      color: #2C1810; 
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .prod-origin { 
+      font-size: 11px; 
+      color: #8B7555; 
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .prod-price { 
+      font-size: 15px; 
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+    }
+    .add-btn { 
+      padding: 7px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(139,111,71,0.12);
+      transition: all 0.2s ease-out;
+    }
+    .add-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(139,111,71,0.2);
+    }
+
+    /* HERRAMIENTAS MEJORADAS */
+    .tool-card { 
+      padding: 24px 14px;
+      box-shadow: 0 2px 8px rgba(44,24,16,0.06);
+    }
+    .tool-icon { 
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+    .tool-name { 
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+    .tool-sub { 
+      font-size: 12px;
+      color: #8B7555;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* SECCIONES MEJORADAS */
+    .sec-h { 
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    /* PROFUNDIDAD Y TRANSICIONES */
+    .card {
+      box-shadow: 0 2px 8px rgba(44,24,16,0.06);
+      transition: all 0.2s ease-out;
+    }
+    .prod:hover, .tool-card:hover {
+      box-shadow: 0 4px 16px rgba(44,24,16,0.1);
+    }
+    button, a {
+      transition: all 0.2s ease-out;
+    }
+    button:active {
+      transform: scale(0.98);
+    }
+
+    /* RESPONSIVE MEJORADO */
     @media (max-width: 380px) {
+      .sec-h { font-size: 22px; }
+      .prod-grid { grid-template-columns: 1fr; }
+      .tool-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .content { padding: 14px; }
       .cam-opts { grid-template-columns: 1fr 1fr; gap: 10px; }
       .cam-opts .cam-opt:nth-child(3) { grid-column: 1 / -1; max-width: 140px; margin: 0 auto; }
     }
@@ -279,9 +372,9 @@
   <div class="splash-box">
     <img src="logohuelladeorigen.png" alt="Huella de Origen" style="height: 120px; margin-bottom: 20px; object-fit: contain;">
     <div class="sp-sub">Café de Especialidad</div>
-    <div class="sp-tag">"Del campo a tu taza"</div>
-    <div class="sp-desc">Cafés únicos y artesanales, cultivados y tostados exclusivamente en Colombia — el mayor productor mundial de café Arábica recolectado a mano.</div>
-    <button class="sp-btn" onclick="goTo('home')">Explorar cafés</button>
+    <div class="sp-tag">"Descubre el café desde su origen"</div>
+    <div class="sp-desc">Cafés únicos de Colombia, desde la finca hasta tu taza. Conoce su origen, analiza su calidad, prepáralo como merece.</div>
+    <button class="sp-btn" onclick="goTo('home')">Descubrir mis cafés</button>
     <button class="sp-btn2" onclick="goTo('perfil')">Mi perfil</button>
   </div>
   <div class="social-row">
@@ -310,7 +403,7 @@
     </div>
 
     <div class="sec-hdr">
-      <div class="sec-h">Nuestros Cafés</div>
+      <div class="sec-h">Descubre Nuestros Cafés</div>
       <div class="ver-mas" onclick="goTo('tienda')">Ver todos →</div>
     </div>
     <div class="prod-grid">
@@ -361,23 +454,23 @@
     </div>
 
     <div class="sec-hdr">
-      <div class="sec-h">Herramientas IA</div>
+      <div class="sec-h">Conoce Mejor Tu Café</div>
     </div>
     <div class="tool-grid">
       <div class="tool-card" onclick="goTo('camara')">
         <div class="tool-icon">📷</div>
-        <div class="tool-name">Analizar café</div>
-        <div class="tool-sub">Molienda · Tueste · Taza</div>
+        <div class="tool-name">Analizar</div>
+        <div class="tool-sub">Descubre la calidad de tu café</div>
       </div>
       <div class="tool-card" onclick="goTo('calc')">
         <div class="tool-icon">⚖️</div>
-        <div class="tool-name">Calculadora</div>
-        <div class="tool-sub">Recetas y ratios</div>
+        <div class="tool-name">Preparar</div>
+        <div class="tool-sub">Encuentra la proporción perfecta</div>
       </div>
       <div class="tool-card" onclick="goTo('scanner')">
         <div class="tool-icon">📦</div>
-        <div class="tool-name">Escanear etiqueta</div>
-        <div class="tool-sub">Foto del empaque</div>
+        <div class="tool-name">Descubrir</div>
+        <div class="tool-sub">Conoce el origen de tu café</div>
       </div>
     </div>
   </div>
@@ -392,46 +485,46 @@
 
 <!-- CAMARA / ANALISIS IA -->
 <div class="screen" id="sc-camara">
-  <div class="banner">📷 Análisis con Inteligencia Artificial</div>
+  <div class="banner">📷 Analiza tu Café</div>
   <div class="content">
     <div class="back-row">
       <span class="back" onclick="goTo('home')">←</span>
-      <span class="back-title">Análisis Visual IA</span>
+      <span class="back-title">Descubre tu Café</span>
     </div>
 
 
-    <div style="font-size:11px;color:#7A6050;margin-bottom:10px;font-weight:500;text-transform:uppercase;letter-spacing:1px">Tipo de análisis</div>
+    <div style="font-size:11px;color:#7A6050;margin-bottom:10px;font-weight:500;text-transform:uppercase;letter-spacing:1px">¿Qué quieres analizar?</div>
     <div class="cam-opts">
       <div class="cam-opt sel" id="opt-molienda" onclick="selOpt('molienda')">
         <div class="cam-opt-icon">⚙️</div>
-        <div class="cam-opt-name">Molienda + Tueste</div>
-        <div class="cam-opt-sub">Foto del café molido</div>
+        <div class="cam-opt-name">Molienda</div>
+        <div class="cam-opt-sub">Uniformidad y tamaño</div>
       </div>
       <div class="cam-opt" id="opt-taza" onclick="selOpt('taza')">
         <div class="cam-opt-icon">☕</div>
-        <div class="cam-opt-name">Café en Taza</div>
-        <div class="cam-opt-sub">Foto de la bebida</div>
+        <div class="cam-opt-name">Bebida</div>
+        <div class="cam-opt-sub">Extracción y claridad</div>
       </div>
       <div class="cam-opt" id="opt-etiqueta" onclick="goTo('scanner')">
         <div class="cam-opt-icon">📦</div>
-        <div class="cam-opt-name">Escanear Etiqueta</div>
-        <div class="cam-opt-sub">Foto del empaque</div>
+        <div class="cam-opt-name">Etiqueta</div>
+        <div class="cam-opt-sub">Origen y trazabilidad</div>
       </div>
     </div>
 
     <div style="background:#F5EDD6;padding:14px;border-radius:10px;margin-bottom:14px">
-      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#8B6F47;margin-bottom:8px">📸 Cómo usar Analizar</div>
+      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#8B6F47;margin-bottom:8px">📸 3 Formas de Descubrir</div>
       <div style="font-size:12px;color:#5C3520;line-height:1.6">
-        <strong>Escanear etiqueta:</strong> Fotografía el empaque del café<br>
-        <strong>Molienda:</strong> Toma una foto de cerca del café molido<br>
-        <strong>Taza:</strong> Fotografía tu bebida preparada para análisis visual
+        <strong>Etiqueta:</strong> Descubre origen, variedad y proceso<br>
+        <strong>Molienda:</strong> Evalúa uniformidad y tamaño de partícula<br>
+        <strong>Bebida:</strong> Analiza extracción y claridad de tu preparación
       </div>
     </div>
 
     <div class="cam-zone" id="cam-zone" onclick="document.getElementById('file-input').click()">
       <div class="cam-icon">📸</div>
-      <div class="cam-title">Toca para tomar o elegir foto</div>
-      <div class="cam-sub">Sube la foto de tu café para análisis inmediato con IA</div>
+      <div class="cam-title">Toma una foto</div>
+      <div class="cam-sub">Descubre la calidad y características de tu café</div>
     </div>
 
     <div class="cam-actions">
@@ -451,7 +544,7 @@
 
     <div class="loading" id="loading">
       <div class="spinner"></div>
-      <div class="load-txt" id="load-txt">Analizando tu café...</div>
+      <div class="load-txt" id="load-txt">Descubriendo tu café...</div>
     </div>
 
     <div class="result-box" id="result-box"></div>
@@ -467,17 +560,17 @@
 
 <!-- SCANNER ETIQUETA -->
 <div class="screen" id="sc-scanner">
-  <div class="banner">📦 Escáner de Etiqueta</div>
+  <div class="banner">📦 Descubre tu Café</div>
   <div class="content">
     <div class="back-row">
       <span class="back" onclick="goTo('home')">←</span>
-      <span class="back-title">Escanear Etiqueta</span>
+      <span class="back-title">Conoce el Origen de tu Café</span>
     </div>
 
     <div class="cam-zone" onclick="document.getElementById('file-scan').click()">
       <div class="cam-icon">📦</div>
-      <div class="cam-title">Foto de la etiqueta del café</div>
-      <div class="cam-sub">Toca para fotografiar el empaque<br>La IA extrae toda la información</div>
+      <div class="cam-title">Fotografía la etiqueta</div>
+      <div class="cam-sub">Descubrirás: origen, variedad, proceso, altitud y más</div>
     </div>
 
     <div class="cam-actions">
@@ -497,7 +590,7 @@
 
     <div class="loading" id="load-scan">
       <div class="spinner"></div>
-      <div class="load-txt" id="load-scan-txt">Leyendo etiqueta...</div>
+      <div class="load-txt" id="load-scan-txt">Descubriendo origen...</div>
     </div>
 
     <div class="result-box" id="scan-result"></div>
