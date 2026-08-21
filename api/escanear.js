@@ -58,17 +58,32 @@ export default async function handler(req, res) {
     const data = await response.json();
     const text = data.content[0].text;
 
-    // Extraer JSON
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-      return res.status(200).json({ error: 'No JSON found in response', raw: text });
+    // Limpiar la respuesta y extraer JSON
+    let jsonText = text.trim();
+    
+    // Si tiene ```json, quitarlo
+    if (jsonText.includes('```json')) {
+      jsonText = jsonText.replace(/```json\n?/g, '').replace(/```\n?/g, '');
     }
     
+    // Encontrar el primer { y el último }
+    const firstBrace = jsonText.indexOf('{');
+    const lastBrace = jsonText.lastIndexOf('}');
+    
+    if (firstBrace === -1 || lastBrace === -1) {
+      return res.status(200).json({ error: 'No JSON found', raw: text });
+    }
+    
+    const jsonStr = jsonText.substring(firstBrace, lastBrace + 1);
+    
     try {
-      const scanResult = JSON.parse(jsonMatch[0]);
+      const scanResult = JSON.parse(jsonStr);
       return res.status(200).json(scanResult);
     } catch (parseErr) {
-      return res.status(200).json({ error: 'Invalid JSON: ' + parseErr.message, raw: jsonMatch[0] });
+      return res.status(200).json({ 
+        error: 'Invalid JSON: ' + parseErr.message, 
+        raw: jsonStr.substring(0, 500)
+      });
     }
   } catch (error) {
     console.error('Error:', error);
