@@ -31,25 +31,7 @@ export default async function handler(req, res) {
         messages: [
           {
             role: 'user',
-            content: `Busca información sobre el café: "${query}"
-
-Devuelve un JSON con:
-{
-  "nombre": "nombre exacto",
-  "marca": "productor/marca",
-  "origen": "país/región",
-  "sca": número,
-  "perfil": ["notas de sabor"],
-  "proceso": "Lavado/Natural/Honey",
-  "altitud": "rango msnm",
-  "varietales": ["varietal1"],
-  "recomendacion": "método de preparación recomendado",
-  "precio_aprox": "rango de precio USD",
-  "rating": número entre 0-5
-}
-
-Si es un café conocido (Chivito de Páramo, Quetzal, etc.), usa datos reales de Huella de Origen.
-Si no conoces el café, devuelve datos aproximados basados en origen/tipo.`
+            content: `Busca el café: "${query}"\n\nDevuelve SOLO JSON válido, sin texto adicional:\n\n{\n  "nombre": "nombre del café",\n  "origen": "país/región",\n  "sca": 86,\n  "proceso": "Lavado",\n  "altitud": "1800 msnm",\n  "precio_usd": 12,\n  "sabor": "chocolate, frutas",\n  "metodo": "V60"\n}`
           }
         ]
       })
