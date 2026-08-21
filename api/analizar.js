@@ -18,116 +18,96 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'API key not configured' });
   }
 
-  // PROMPT PROFESIONAL DE BARISTA - MOLIENDA
-  const promptMolienda = `ERES BARISTA PROFESIONAL CON 15+ AÑOS. ANALIZA ESTA MOLIENDA:
+  // PROMPT SIMPLIFICADO PARA MOLIENDA - SIN CARACTERES ESPECIALES
+  const promptMolienda = `BARISTA PROFESIONAL. ANALIZA CAFE MOLIDO.
 
-PASO 1 - MIDE TAMAÑO DE PARTÍCULA (lo más crítico):
-Observa el diámetro promedio de los granos:
-- Fina (Espresso): 0.5-1mm - partículas casi polvo
-- Media-Fina (V60): 1-1.5mm - polvo fino con textura
-- Media (Chemex): 1.5-2mm - polvo medio, como arena fina
-- Media-Gruesa (Prensa): 2-3mm - granos visibles, tipo arena
-- Gruesa (Cupping): 3-4mm - granos grandes, claramente visibles
+TAMAÑO PARTICULA (lo más importante):
+- Fina: polvo fino como espresso
+- Media-Fina: arena fina
+- Media: arena media normal
+- Media-Gruesa: granos visibles arena gruesa
+- Gruesa: particulas grandes
 
-PASO 2 - MIDE UNIFORMIDAD (0-100%):
-- 95-100%: Todas las partículas IGUAL tamaño, perfectamente uniforme
-- 80-94%: Buena uniformidad, mínimas variaciones
-- 60-79%: Uniforme pero con algunas partículas más finas o gruesas
-- 40-59%: Bastante irregular, mezcla de tamaños notoria
-- 0-39%: Muy irregular, polvo fino + granos grandes mezclados
+UNIFORMIDAD (0-100%):
+- 95-100: Todas igual tamaño
+- 80-94: Buena uniformidad
+- 60-79: Uniforme con variacion
+- 40-59: Bastante irregular
+- 0-39: Muy irregular
 
-PASO 3 - COLOR/TOSTIÓN (independiente):
-Compara con ESCALA AGTRON:
-- #C8A070 (Agtron 95): Claro - café pálido
-- #A89060 (Agtron 70): Medio-Claro - café marrón claro
-- #7B5A30 (Agtron 55): Medio - café marrón balanceado
-- #5A3820 (Agtron 42): Medio-Oscuro - café marrón oscuro
-- #3D2415 (Agtron 28): Oscuro - café casi negro
+COLOR Y TOSTION:
+- Claro: #C8A070 Agtron 95
+- Medio-Claro: #A89060 Agtron 70
+- Medio: #7B5A30 Agtron 55
+- Medio-Oscuro: #5A3820 Agtron 42
+- Oscuro: #3D2415 Agtron 28
 
-PASO 4 - CONFIANZA EN ANÁLISIS (basada en UNIFORMIDAD):
-- Alta: >80% uniformidad + foto clara
+CONFIANZA (basada en UNIFORMIDAD):
+- Alta: más de 80% uniformidad
 - Media: 60-80% uniformidad
-- Baja: <60% uniformidad o foto pobre
+- Baja: menos 60% uniformidad
 
-PASO 5 - METODOS COMPATIBLES (según TAMAÑO):
-Fina → Espresso | Media-Fina → V60/Pourover | Media → Chemex | Media-Gruesa → Prensa | Gruesa → Cupping
+METODOS COMPATIBLES:
+Fina=Espresso | Media-Fina=V60 | Media=Chemex | Media-Gruesa=Prensa | Gruesa=Cupping
 
-DEVUELVE SOLO JSON (sin backticks):
+DEVUELVE SOLO JSON VALIDO:
 {
   "molienda_tipo": "Media-Gruesa",
   "tamaño_mm": "2-3",
   "particula_uniformidad": 85,
-  "color_molienda": "Marrón oscuro",
+  "color_molienda": "Marron oscuro",
   "tueste_nivel": "Medio-Oscuro",
   "hex": "#5A3820",
   "agtron": 42,
   "confianza": "Alta",
   "metodos": [
-    {"n": "Prensa Francesa", "r": "Cuerpo completo y notas robustas", "i": "☕", "c": "ideal"},
-    {"n": "Moka", "r": "Intensidad y dulzor tostado", "i": "🫖", "c": "ideal"},
-    {"n": "V60", "r": "Requiere ajuste por tamaño", "i": "🌐", "c": "ok"}
+    {"n": "Prensa Francesa", "r": "Cuerpo completo", "i": "cafe", "c": "ideal"},
+    {"n": "Moka", "r": "Intensidad tostado", "i": "moka", "c": "ideal"}
   ],
-  "sabores_esperados": ["chocolate oscuro", "nueces", "caramelo quemado"],
-  "tips": [
-    "Agua 88-92°C para tostión oscura",
-    "Tiempo extracción 4-5 minutos",
-    "Ratio 1:15 para cuerpo completo"
-  ],
-  "notas_barista": "Tostión consistente, uniformidad buena, ideal para métodos de inmersión"
+  "sabores_esperados": ["chocolate", "nueces", "caramelo"],
+  "tips": ["Agua 88-92C", "Tiempo 4-5 min", "Ratio 1:15"]
 }`;
 
-  // PROMPT PROFESIONAL DE BARISTA - TAZA
-  const promptTaza = `ERES BARISTA PROFESIONAL CON 15+ AÑOS. ANALIZA ESTA TAZA:
+  // PROMPT SIMPLIFICADO PARA TAZA - SIN CARACTERES ESPECIALES
+  const promptTaza = `BARISTA PROFESIONAL. ANALIZA CAFE EN TAZA.
 
-PASO 1 - IDENTIFICA MÉTODO (por características visuales):
-- V60/Pourover: Bebida transparente, colores claros, cuerpo ligero
-- Prensa Francesa: Bebida opaca/turbia, colores oscuros, cuerpo denso
-- Chemex: Muy clara, sin partículas, aspecto "limpio"
-- Moka: Oscura, concentrada, cremosa
+METODO (por visuales):
+- V60: transparente, claro, cuerpo ligero
+- Prensa: opaco, oscuro, cuerpo denso
+- Chemex: muy claro, sin particulas
+- Moka: oscuro, concentrado, cremoso
 
-PASO 2 - EVALÚA COLOR REAL (independiente de método):
-Compara con ESCALA:
-- #C8A070 (Ámbar claro): Sub-extraída (débil, plana)
-- #7B5A30 (Marrón): Bien extraída (balanceada)
-- #3D2415 (Muy oscuro): Sobre-extraída (amarga, quemada)
+COLOR REAL (independiente metodo):
+- #C8A070 Ambar claro: Sub-extraido debil plano
+- #7B5A30 Marron: Bien extraido balanceado
+- #3D2415 Muy oscuro: Sobre-extraido amargo
 
-PASO 3 - EVALÚA EXTRACCIÓN (basada en COLOR + MÉTODO):
-Si V60 ve #C8A070 = Sub-extraída (debería ser más oscuro)
-Si Prensa ve #7B5A30 = Sub-extraída (debería ser #5A3820 mínimo)
-Si color es consistente con método = Bien extraída
+EXTRACCION (basada en COLOR + METODO):
+Si V60 ve claro: Sub-extraida
+Si Prensa ve #7B5A30: Sub-extraida debe ser mas oscuro
+Si color consistente con metodo: Bien extraida
 
-PASO 4 - MIDE CONFIANZA (basada en CLARIDAD de foto + COHERENCIA con método):
-- Alta: Foto nítida, color visible, coherente con método
-- Media: Foto decente pero con reflejos o ángulo
-- Baja: Foto borrosa o color ambiguo
+CONFIANZA (foto clara + coherencia):
+- Alta: foto nitida color visible coherente
+- Media: foto decente reflejos o angulo
+- Baja: foto borrosa color ambiguo
 
-PASO 5 - VALIDA COHERENCIA CON MOLIENDA (si la conoces):
-Si molienda era Medio-Oscuro/Gruesa → espero ver taza oscura
-Si molienda era Medio/Media → espero ver taza marrón medio
-INCONSISTENCIA = Alerta al usuario
-
-DEVUELVE SOLO JSON (sin backticks):
+DEVUELVE SOLO JSON VALIDO:
 {
   "metodo_detectado": "Prensa Francesa",
-  "color_taza": "Marrón oscuro",
-  "extraccion": "Bien extraída",
+  "color_taza": "Marron oscuro",
+  "extraccion": "Bien extraida",
   "hex": "#5A3820",
   "agtron": 42,
-  "transparencia": "Opaca (normal para Prensa)",
+  "transparencia": "Opaca normal Prensa",
   "confianza": "Alta",
   "puntaje_visual": 82,
   "diagnostico": [
-    {"n": "Color", "d": "Marrón oscuro consistente con Prensa Francesa", "e": "bien", "i": "✓"},
-    {"n": "Extracción", "d": "Tiempo y temperatura correctos, sin amargor excesivo", "e": "bien", "i": "✓"},
-    {"n": "Cuerpo", "d": "Viscosidad apropiada, bebida densa", "e": "bien", "i": "✓"}
+    {"n": "Color", "d": "Marron oscuro consistente", "e": "bien", "i": "ok"},
+    {"n": "Extraccion", "d": "Tiempo temperatura correctos", "e": "bien", "i": "ok"}
   ],
-  "sabores": ["chocolate oscuro", "nueces tostadas", "caramelo"],
-  "ajustes": [
-    "Mantener tiempo extracción 4-5 minutos",
-    "Agua entre 88-92°C",
-    "Molienda gruesa uniforme"
-  ],
-  "notas_barista": "Extracción consistente, preparación correcta para Prensa Francesa"
+  "sabores": ["chocolate", "nueces", "caramelo"],
+  "ajustes": ["Mantener tiempo 4-5 min", "Agua 88-92C", "Molienda gruesa"]
 }`;
 
   try {
